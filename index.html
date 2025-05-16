@@ -3,20 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Interactive page where users can add, delete or give a like to pitures"
-    />
+    <meta name="description" content="Interactive page where users can add, delete or give a like to pictures" />
     <meta name="author" content="Victor Manuel Salgado Luna (Tiggreee)" />
-    <meta
-      name="keywords"
-      content="HTML, CSS, JavaScript, pitures, interactive page"
-    />
-    <title>"Around EE.UU."</title>
+    <meta name="keywords" content="HTML, CSS, JavaScript, pictures, interactive page" />
+    <title>Around EE.UU.</title>
     <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
-<body>
-    
-</body>
+  <body>
+    <section class="header">
+      <div class="header__logo-row">
+        <img class="header__logo" src="./images/headerlogo.jpg" alt="Around Us Logo"/>
+      </div>
+      <div class="header__divider"></div>
+      <header class="header__info">
+        <img class="header__pic" src="./images/renata.jpeg" alt="Foto de perfil de Renata Cousteau"/>   
+        <h1 class="header__title">Renata Cousteau</h1>  
+        <h2 class="header__subtitle">Exploradora</h2>
+      </header>
+      <div class="header__actions">
+        <button class="header__edit" aria-label="Editar perfil">
+          <img src="./images/edit_button.jpg" alt="Botón para editar el perfil"/>
+        </button>
+        <button class="header__add" aria-label="Agregar imágenes">
+          <img src="./images/add_button.jpg" alt="Botón para agregar imágenes"/>
+        </button>
+      </div>
+    </section>
+
+    <main class="grid__container">
+      <section class="grid__section">
+        <article class="grid__item">
+          <img class="grid__pic" src="./images/paisaje1.jpg" alt="Valle de Yosemite"/>
+          <h3 class="grid__title">Valle de Yosemite</h3>
+          <button class="grid__like" aria-label="Dar me gusta a Valle de Yosemite">
+            <img class="grid__heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
+          </button>
+        </article>
+
+        <article class="grid__item">
+          <img class="grid__pic" src="./images/paisaje2.webp" alt="Lago Louise"/>
+          <h3 class="grid__title">Lago Louise</h3>
+          <button class="grid__like" aria-label="Dar me gusta a Lago Louise">
+            <img class="grid__heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
+          </button>
+        </article>
+
+        <article class="grid__item">
+          <img class="grid__pic" src="./images/paisaje3.jpg" alt="Montañas Calvas"/>
+          <h3 class="grid__title">Montañas Calvas</h3>
+          <button class="grid__like" aria-label="Dar me gusta a Montañas Calvas">
+            <img class="grid__heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
+          </button>
+        </article>
+
+        <article class="grid__item">
+          <img class="grid__pic" src="./images/paisaje4.jpg" alt="Latemar"/>
+          <h3 class="grid__title">Latemar</h3>
+          <button class="grid__like" aria-label="Dar me gusta a Latemar">
+            <img class="grid__heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
+          </button>
+        </article>
+
+        <article class="grid__item">
+          <img class="grid__pic" src="./images/paisaje5.jpg" alt="Vanois National Park"/>
+          <h3 class="grid__title">Vanois National Park</h3>
+          <button class="grid__like" aria-label="Dar me gusta a Vanois National Park">
+            <img class="grid__heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
+          </button>
+        </article>
+
+        <article class="grid__item">
+          <img class="grid__pic" src="./images/paisaje6.jpg" alt="Lago di Braies"/>
+          <h3 class="grid__title">Lago di Braies</h3>
+          <button class="grid__like" aria-label="Dar me gusta a Lago di Braies">
+            <img class="grid__heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
+          </button>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">© 2024 Around The U.S.</p>
+    </footer>
+  </body>
 </html>
