@@ -1,4 +1,4 @@
-.grid__container {
+.grid {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -40,7 +40,7 @@
 }
 
 @media (min-width: 1280px) {
-  .grid__container {
+  .grid {
     max-width: 1280px;
     margin: 0 auto;
   }
@@ -99,7 +99,7 @@
   align-items: center;
 }
 
-.grid__like__heart {
+.grid__like-heart {
   width: 24px;
   height: 24px;
 }

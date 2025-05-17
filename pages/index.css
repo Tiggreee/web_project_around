@@ -1,6 +1,6 @@
 @import url("../vendor/normalize.css");
 @import url("../blocks/body.css");
 @import url('../blocks/header.css');
-@import url('../blocks/grid__container.css');
+@import url('../blocks/grid.css');
 @import url('../blocks/footer.css');
 @import url("../blocks/modal.css");
