@@ -24,7 +24,7 @@
 }
 
 .header__info {
-  background: none; /* Elimina el fondo gris */
+  background: none;
   border-radius: 0; 
   width: 100%;
   max-width: 282px;
@@ -49,7 +49,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  /* Eliminar width: 100% para que el ancho lo defina el contenido */
 }
 
 .header__title {
@@ -79,7 +78,6 @@
   color: #bdbdbd;
   margin: 8px 0 20px 0;
   text-align: left;
-  /* Eliminar align-self: center para que herede la alineación del bloque */
 }
 
 .header__add {
@@ -250,6 +248,9 @@
     width: 250px;
     height: auto;
     gap: 0;
+  }
+  .header__title {
+    font-size: 1.5rem;
   }
   .header__subtitle {
     font-size: 1rem;
