@@ -82,6 +82,9 @@
   font-weight: 700;
   color: #fff;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .header__edit {
@@ -105,6 +108,9 @@
   margin: 8px 0 20px 0;
   text-align: center;
   align-self: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .header__add {
@@ -215,6 +221,9 @@
     font-weight: 700;
     color: #fff;
     margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .header__edit {
     background: none;
@@ -235,6 +244,9 @@
     margin: 0;
     text-align: left;
     align-self: flex-start;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .header__add {
     width: 150px;
@@ -302,12 +314,18 @@
   }
   .header__title {
     font-size: 1.5rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .header__subtitle {
     font-size: 1rem;
     margin: 0;
     text-align: left;
     align-self: flex-start;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .header__add {
     width: 150px;
