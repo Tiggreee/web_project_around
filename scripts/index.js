@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Cambia la imagen del corazón al hacer hover y la regresa al salir
 
-  document.querySelectorAll('.grid__heart').forEach(function(img) {
+  document.querySelectorAll('.grid__like__heart').forEach(function(img) {
     let liked = false;
 
     img.addEventListener('mouseenter', function() {
