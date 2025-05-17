@@ -21,8 +21,12 @@
 @media (min-width: 600px) {
   .grid__section {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    padding: 0 0 32px 0;
+    gap: 12px; /* Reduce el espacio entre columnas */
+    padding: 0 0 24px 0;
+    max-width: 600px;
+  }
+  .grid__item {
+    margin: 0 auto;
   }
 }
 
@@ -98,9 +102,4 @@
 .grid__heart {
   width: 24px;
   height: 24px;
-}
-
-.grid__heart:hover {
-  content: img
-  transition: content 0.2s;
 }
