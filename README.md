@@ -1,8 +1,10 @@
-# Proyecto: Around The U.S.
+Proyecto: Around The U.S.
 
-Este es mi proyecto de práctica para el curso de desarrollo web de TripleTen. El objetivo principal fue crear una página interactiva de galería de imágenes inspirada en la red social "Around The U.S.", aplicando conceptos de HTML, CSS y JavaScript.
+Este es el paso número 7 de mi travesía en TripleTen.
+El objetivo principal fue crear una página interactiva inspirada en la red social "Around The U.S.", aplicando conceptos de HTML, CSS y JavaScript.
 
-## Descripción
+
+Descripción
 
 - Permite editar el perfil de usuario (nombre y ocupación) mediante un modal.
 - Los usuarios pueden dar "like" a las imágenes de la galería.
@@ -10,13 +12,13 @@ Este es mi proyecto de práctica para el curso de desarrollo web de TripleTen. E
 - Efectos visuales con hover en botones y corazones.
 - Uso de fuentes personalizadas y estilos modernos.
 
-## Tecnologías utilizadas
+Tecnologías utilizadas
 
 - HTML5
 - CSS3 (BEM, Flexbox, Grid, Media Queries)
 - JavaScript (DOM, eventos, manipulación de clases y atributos)
 
-## Cosas que aprendí y retos
+Cosas que aprendí y retos
 
 - Cómo estructurar un proyecto web desde cero.
 - La importancia de los breakpoints y el diseño mobile first.
@@ -24,19 +26,21 @@ Este es mi proyecto de práctica para el curso de desarrollo web de TripleTen. E
 - Controlar el desbordamiento de texto y el uso de elipsis.
 - Mejorar la accesibilidad y la experiencia de usuario.
 
-## Cosas por mejorar
+
+Cosas por mejorar
 
 - Validación más robusta de los formularios.
 - Mejor manejo de errores y feedback visual.
 - Refactorizar el JS para hacerlo más escalable.
 - Agregar animaciones más suaves y microinteracciones.
 
-## Demo
 
 Puedes ver el proyecto publicado aquí:
-[https://tiggreee.github.io/web_project_around/](https://tiggreee.github.io/web_project_around/)
 
----
+https://tiggreee.github.io/web_project_around/
+
+
+
 
 Este proyecto es parte de mi aprendizaje, así que cualquier feedback es bienvenido. ¡Gracias por visitar mi trabajo!
 

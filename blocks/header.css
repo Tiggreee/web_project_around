@@ -85,6 +85,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  display: block;
+  max-width: 100%;
 }
 
 .header__edit {
@@ -111,6 +113,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  display: block;
+  max-width: 100%;
 }
 
 .header__add {
@@ -224,6 +228,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    display: block;
+    max-width: 100%;
   }
   .header__edit {
     background: none;
@@ -247,6 +253,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    display: block;
+    max-width: 100%;
   }
   .header__add {
     width: 150px;
@@ -317,6 +325,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    display: block;
+    max-width: 100%;
   }
   .header__subtitle {
     font-size: 1rem;
@@ -326,6 +336,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    display: block;
+    max-width: 100%;
   }
   .header__add {
     width: 150px;
