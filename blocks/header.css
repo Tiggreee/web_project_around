@@ -1,7 +1,7 @@
-.header {
+.header { /* Update after review */
   width: 100%;
   background: #000;
-  padding-top: 24px;
+  padding-top: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,18 +15,16 @@
   min-height: 48px;
 }
 
-.header__logo {
+.header__logo { /* Update after review */
   width: 100%;
-  max-width: var(--header-info-width, 282px);
   height: auto;
   margin: 0 auto 20px auto;
   display: block;
   object-fit: contain;
 }
 
-.header picture {
+.header picture { /* Update after review */
   width: 100%;
-  max-width: var(--header-info-width, 282px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,15 +36,14 @@
 .header picture source,
 .header picture img {
   display: block;
-  width: 100%;
-  max-width: var(--header-info-width, 282px);
+  max-width: 100%;
   height: auto;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.header__info {
+.header__info { /* Update after review */
   --header-info-width: 282px;
   background: none;
   border-radius: 0; 
@@ -55,7 +52,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 0 20px 0;
+  padding: 42px 0 36px 0;
   box-sizing: border-box;
   box-shadow: none;  
   border: none;      
@@ -159,7 +156,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .header__logo {
+  .header__logo { /* Update after review */
     width: 100%;
     height: 120px;
     max-width: 880px;
@@ -167,18 +164,13 @@
     display: block;
     object-fit: contain;
   }
-  .header picture {
+  .header picture img { /* Update after review */
     width: 100%;
     max-width: 880px;
-    margin: 0 auto;
-    padding: 0;
+    height: 100px;
+    padding: 0 10px 0 10px;
   }
-  .header picture img {
-    width: 100%;
-    max-width: 880px;
-    height: 120px;
-  }
-  .header__info {
+  .header__info { /* Update after review */
     --header-info-width: 880px;
     width: 100%;
     max-width: 880px;
@@ -188,7 +180,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-around;
     padding: 0;
     box-sizing: border-box;
     box-shadow: none;
@@ -280,8 +272,8 @@
 }
 
 @media (min-width: 600px) and (max-width: 899px) {
-  .header {
-    max-width: 600px;
+  .header {/* Update after review */
+    max-width: 720px;
     margin: 0 auto 24px auto;
     padding-top: 24px;
   }
@@ -299,16 +291,16 @@
     margin: 0 auto;
     padding: 0;
   }
-  .header__info {
+  .header__info { /* Update after review */
     --header-info-width: 600px;
     width: 100%;
     max-width: 600px;
     min-height: 120px;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 24px;
-    padding: 0;
+    padding: 24px 10px 24px 10px;
   }
   .header__pic {
     width: 120px;
@@ -352,9 +344,10 @@
 }
 
 @media (min-width: 900px) {
-  .header__info {
+  .header__info { /* Update after review */
     --header-info-width: 880px;
     max-width: 880px;
+    padding: 40px 0 45px 0;
   }
   .header__block {
     align-items: flex-start;
