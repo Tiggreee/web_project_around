@@ -37,8 +37,33 @@ Cosas por mejorar
 
 Puedes ver el proyecto publicado aquí:
 
+
 https://tiggreee.github.io/web_project_around/
 
+
+
+## Actualización Fase 8 - Tarjetas Dinámicas
+
+A partir de la entrega de la fase 8 del sprint, las tarjetas de la galería ahora se generan dinámicamente desde JavaScript. También puedes agregar nuevas tarjetas usando el botón "+" en la parte superior derecha.
+
+¿Cómo interactuar con la página?
+
+- Haz clic en el botón de agregar imágenes (el ícono "+").
+- Escribe el título que desees para tu nueva tarjeta.
+- Para la imagen, puedes usar una de las siguientes rutas (copia y pega la que prefieras):
+
+  - ./images/paisaje7morelia.jpg
+  - ./images/paisaje8ixtapa.jpg
+  - ./images/paisaje9favela.jpg
+
+- Da clic en "Aceptar" y verás tu nueva tarjeta agregada al inicio de la galería.
+- Puedes repetir el proceso para agregar tantas tarjetas como quieras, usando cualquier título y cualquiera de las imágenes mencionadas arriba.
+
+Así puedes probar fácilmente la nueva funcionalidad y ver lo bien que responde el código al agregar tarjetas extra.
+
+---
+
+> **Nota:** Puedes repetir el proceso para agregar tantas tarjetas como quieras, usando cualquier título y cualquiera de las imágenes mencionadas arriba.
 
 
 

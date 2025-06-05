@@ -34,66 +34,8 @@
     </section>
 
     <main class="grid">
-      <section class="grid__section">
-        <article class="grid__item">
-          <img class="grid__pic" src="./images/paisaje1.jpg" alt="Valle de Yosemite"/>
-          <div class="grid__item-row">
-            <h3 class="grid__title">Valle de Yosemite</h3>
-            <button class="grid__like" aria-label="Dar me gusta a Valle de Yosemite">
-              <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
-            </button>
-          </div>
-        </article>
-
-        <article class="grid__item">
-          <img class="grid__pic" src="./images/paisaje2.webp" alt="Lago Louise"/>
-          <div class="grid__item-row">
-            <h3 class="grid__title">Lago Louise</h3>
-            <button class="grid__like" aria-label="Dar me gusta a Lago Louise">
-              <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
-            </button>
-          </div>
-        </article>
-
-        <article class="grid__item">
-          <img class="grid__pic" src="./images/paisaje3.jpg" alt="Montañas Calvas"/>
-          <div class="grid__item-row">
-            <h3 class="grid__title">Montañas Calvas</h3>
-            <button class="grid__like" aria-label="Dar me gusta a Montañas Calvas">
-              <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
-            </button>
-          </div>
-        </article>
-
-        <article class="grid__item">
-          <img class="grid__pic" src="./images/paisaje4.jpg" alt="Latemar"/>
-          <div class="grid__item-row">
-            <h3 class="grid__title">Latemar</h3>
-            <button class="grid__like" aria-label="Dar me gusta a Latemar">
-              <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
-            </button>
-          </div>
-        </article>
-
-        <article class="grid__item">
-          <img class="grid__pic" src="./images/paisaje5.jpg" alt="Vanois National Park"/>
-          <div class="grid__item-row">
-            <h3 class="grid__title">Vanois National Park</h3>
-            <button class="grid__like" aria-label="Dar me gusta a Vanois National Park">
-              <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
-            </button>
-          </div>
-        </article>
-
-        <article class="grid__item">
-          <img class="grid__pic" src="./images/paisaje6.jpg" alt="Lago di Braies"/>
-          <div class="grid__item-row">
-            <h3 class="grid__title">Lago di Braies</h3>
-            <button class="grid__like" aria-label="Dar me gusta a Lago di Braies">
-              <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
-            </button>
-          </div>
-        </article>
+      <section class="grid__section" id="cardsContainer">
+        
       </section>
     </main>
 
@@ -117,5 +59,16 @@
         </form>
       </div>
     </div>
+    <!-- Modal o template de tarjetas -->
+    <template id="cardTemplate">
+     <article class="grid__item">
+       <img class="grid__pic" src="" alt=""/>
+       <div class="grid__item-row">
+         <h3 class="grid__title"></h3>
+         <button class="grid__like" aria-label="">
+           <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
+         </button>
+      </div>
+    </template> 
   </body>
 </html>
