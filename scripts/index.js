@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const cardsContainer = document.getElementById('cardsContainer');
   const cardTemplate = document.getElementById('cardTemplate').content;
 
+  // Constantes para el modal de agregar tarjeta
+  const addCardModal = document.getElementById('addCardModal');
+  const addCardForm = document.getElementById('addCardForm');
+  const addCardCloseBtn = addCardModal.querySelector('.modal__close');
+
   // Función para listeners de "like" en corazones 
   function addLikeListeners(img) {
     let liked = false;
@@ -77,6 +82,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // --- Lógica para el modal de agregar tarjeta ---
+  if (addCardModal && addCardForm && addCardCloseBtn) {
+    // Mostrar modal al dar click en "+"
+    document.querySelector('.header__add').addEventListener('click', () => {
+      addCardModal.style.display = 'flex';
+      document.body.classList.add('modal-open');
+    });
+
+    // Cerrar modal al dar click en la X
+    addCardCloseBtn.addEventListener('click', () => {
+      addCardModal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+    });
+
+    // Agregar tarjeta al enviar el formulario
+    addCardForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = addCardForm.elements['title'].value;
+      const link = addCardForm.elements['link'].value;
+      if (name && link) {
+        initialCards.unshift({ name, link });
+        renderCards(initialCards);
+        addCardModal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+        addCardForm.reset();
+      }
+    });
+  }
+
   // Tarjetas dinámicas
   const initialCards = [
     { name: "Valle de Yosemite", link: "./images/paisaje1.jpg" },
@@ -113,15 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Renderiza las tarjetas iniciales
   renderCards(initialCards);
 
-  // Lógica para agregar una nueva tarjeta
-  document.querySelector('.header__add').addEventListener('click', () => {
-    const name = prompt('Nombre del lugar:');
-    const link = prompt('URL de la imagen:');
-    if (name && link) {
-      initialCards.unshift({ name, link });
-      renderCards(initialCards);
-    }
-  });
 });
 
 

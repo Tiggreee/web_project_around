@@ -59,16 +59,34 @@
         </form>
       </div>
     </div>
-    <!-- Modal o template de tarjetas -->
+
+    <!-- Template de tarjeta -->
     <template id="cardTemplate">
-     <article class="grid__item">
-       <img class="grid__pic" src="" alt=""/>
-       <div class="grid__item-row">
-         <h3 class="grid__title"></h3>
-         <button class="grid__like" aria-label="">
-           <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
-         </button>
+      <article class="grid__item">
+        <img class="grid__pic" src="" alt=""/>
+        <div class="grid__item-row">
+          <h3 class="grid__title"></h3>
+          <button class="grid__like" aria-label="">
+            <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
+          </button>
+        </div>
+      </article>
+    </template>
+
+    <!-- Modal para agregar nueva tarjeta -->
+    <div class="modal" id="addCardModal" style="display:none;" aria-modal="true" role="dialog">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+        <button class="modal__close" type="button" aria-label="Cerrar agregar tarjeta">
+          <img src="./images/close_button.png" alt="Cerrar"/>
+        </button>
+        <form class="modal__form" id="addCardForm" autocomplete="off">
+          <h3 class="modal__title">Nuevo lugar...</h3>
+          <input class="modal__input" type="text" name="title" placeholder="Título" required maxlength="40"/>
+          <input class="modal__input" type="text" name="link" placeholder="URL de la imagen" required/>
+          <button class="modal__save" type="submit">Agregar</button>
+        </form>
       </div>
-    </template> 
+    </div>
   </body>
 </html>
