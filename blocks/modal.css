@@ -104,6 +104,29 @@
 body.modal-open {
   overflow-x: hidden;
 }
+
+.modal_type_image .modal__content_type_image {
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  min-width: unset;
+  max-width: unset;
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  display: block;
+}
+
 @media (min-width: 600px) {
   .modal__content {
     min-width: 410px;
@@ -122,5 +145,9 @@ body.modal-open {
   }
   .modal__title {
     font-size: 1.5rem;
+  }
+    .modal__image {
+    max-width: 95vw;
+    max-height: 60vh;
   }
 }

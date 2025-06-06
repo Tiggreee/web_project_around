@@ -61,9 +61,11 @@ A partir de la entrega de la fase 8 del sprint, las tarjetas de la galería ahor
 
 Así puedes probar fácilmente la nueva funcionalidad y ver lo bien que responde el código al agregar tarjetas extra.
 
+También puedes eliminar cualquier tarjeta de la galería usando el ícono de basurero que aparece en la esquina superior derecha de cada tarjeta. Solo dale click y la tarjeta desaparece al instante (al menos mientras no recargues la página). Además, el ícono cambia cuando pasas el mouse encima para que se vea más interactivo. Todo sigue funcionando igual de fluido y responsivo desde mi perspectiva, así que puedes seguir agregando, viendo y eliminando tarjetas sin problema.
+
 ---
 
-> **Nota:** Puedes repetir el proceso para agregar tantas tarjetas como quieras, usando cualquier título y cualquiera de las imágenes mencionadas arriba.
+> **Nota:** Puedes repetir el proceso para agregar tantas tarjetas como quieras, usando cualquier título y cualquiera de las imágenes mencionadas arriba o alguna URL que aloje una imagen. También cabe señalar que el popup de la imagen se adapta a el tamaño de la misma, claro, bajo los principios del diseño pero también para imagenes pequeñas para eficientar el tamaño del archivo raiz.
 
 
 

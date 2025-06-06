@@ -70,6 +70,9 @@
             <img class="grid__like-heart" src="./images/heart_logo-unact.jpg" alt="Botón de me gusta"/>
           </button>
         </div>
+        <button class="grid__delete" aria-label="Eliminar tarjeta">
+          <img class="grid__delete-icon" src="./images/trashbin.png" alt="Eliminar"/>
+        </button>
       </article>
     </template>
 
@@ -88,5 +91,16 @@
         </form>
       </div>
     </div>
+
+    <!-- Modal para mostrar imagen ampliada -->
+    <div class="modal modal_type_image" id="imagePopup" style="display:none;" aria-modal="true" role="dialog">
+      <div class="modal__overlay"></div>
+      <div class="modal__content modal__content_type_image">
+        <button class="modal__close" type="button" aria-label="Cerrar imagen">
+          <img src="./images/close_button.png" alt="Cerrar"/>
+        </button>
+        <img class="modal__image" src="" alt="Imagen ampliada"/>
+      </div>
+    </div>   
   </body>
 </html>
