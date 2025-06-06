@@ -1,4 +1,4 @@
-Proyecto: Around The U.S.
+## Proyecto: Around The U.S.
 
 Este es el paso número 7 de mi travesía en TripleTen.
 El objetivo principal fue crear una página interactiva inspirada en la red social "Around The U.S.", aplicando conceptos de HTML, CSS y JavaScript.
@@ -38,7 +38,7 @@ Cosas por mejorar
 Puedes ver el proyecto publicado aquí:
 
 
-https://tiggreee.github.io/web_project_around/
+>   https://tiggreee.github.io/web_project_around/
 
 
 
@@ -52,9 +52,9 @@ A partir de la entrega de la fase 8 del sprint, las tarjetas de la galería ahor
 - Escribe el título que desees para tu nueva tarjeta.
 - Para la imagen, puedes usar una de las siguientes rutas (copia y pega la que prefieras):
 
-  - ./images/paisaje7morelia.jpg
-  - ./images/paisaje8ixtapa.jpg
-  - ./images/paisaje9favela.jpg
+    - ./images/paisaje7morelia.jpg
+    - ./images/paisaje8ixtapa.jpg
+    - ./images/paisaje9favela.jpg
 
 - Da clic en "Aceptar" y verás tu nueva tarjeta agregada al inicio de la galería.
 - Puedes repetir el proceso para agregar tantas tarjetas como quieras, usando cualquier título y cualquiera de las imágenes mencionadas arriba.
@@ -65,9 +65,10 @@ También puedes eliminar cualquier tarjeta de la galería usando el ícono de ba
 
 ---
 
-> **Nota:** Puedes repetir el proceso para agregar tantas tarjetas como quieras, usando cualquier título y cualquiera de las imágenes mencionadas arriba o alguna URL que aloje una imagen. También cabe señalar que el popup de la imagen se adapta a el tamaño de la misma, claro, bajo los principios del diseño pero también para imagenes pequeñas para eficientar el tamaño del archivo raiz.
+-> **Nota:** Puedes repetir el proceso para agregar tantas tarjetas como quieras, usando cualquier título y cualquiera de las imágenes mencionadas arriba o alguna URL que aloje una imagen. También cabe señalar que el popup de la imagen se adapta a el tamaño de la misma, claro, bajo los principios del diseño pero también para imagenes pequeñas para eficientar el tamaño del archivo raiz.
 
 
 
 Este proyecto es parte de mi aprendizaje, así que cualquier feedback es bienvenido. ¡Gracias por visitar mi trabajo!
 
+>   https://tiggreee.github.io/web_project_around/
