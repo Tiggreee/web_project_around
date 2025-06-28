@@ -72,3 +72,7 @@ También puedes eliminar cualquier tarjeta de la galería usando el ícono de "t
 Este proyecto es parte de mi aprendizaje, así que cualquier feedback es bienvenido. ¡Gracias por visitar mi trabajo!
 
 >   https://tiggreee.github.io/web_project_around/
+
+## 9. Refactorización y validación modular
+
+En esta fase, nos encargamos de la validación de formularios, además de que separamos la lógica de validación en un archivo independiente (`validate.js`) y mantuvimos la lógica de tarjetas en `index.js`. Esto mejora la organización, evita duplicidad de código y facilita el mantenimiento, cumpliendo con los estándares de modularidad y buenas prácticas de JavaScript.
