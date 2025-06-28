@@ -228,4 +228,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-}); // Este es el único cierre que debe haber. Nada después.
+}); 
