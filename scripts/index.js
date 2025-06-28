@@ -48,12 +48,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     isValidUrl(value) {
-      // Simple URL validation
+      // Permite URLs absolutas y rutas relativas a la carpeta images
       try {
         new URL(value);
         return true;
       } catch {
-        return false;
+        // Permite rutas relativas locales a la carpeta images
+        return (
+          typeof value === 'string' &&
+          (value.startsWith('./images/') || value.startsWith('/images/'))
+        );
       }
     }
 
@@ -69,7 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     resetValidation() {
       this.inputs.forEach(input => {
-        this.validateInput(input);
+        const errorElement = this.form.querySelector(`#${input.name}-error`);
+        errorElement.textContent = '';
+        errorElement.classList.remove(this.errorClass);
+        input.classList.remove('modal__input_type_error');
       });
       this.toggleButtonState();
     }
@@ -174,6 +181,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Agregar tarjeta al enviar el formulario
     addCardForm.addEventListener('submit', function(e) {
       e.preventDefault();
+      let hasError = false;
+      const inputs = Array.from(addCardForm.querySelectorAll('.modal__input'));
+      inputs.forEach(input => {
+        addCardValidator.validateInput(input);
+        const errorText = addCardForm.querySelector(`#${input.name}-error`).textContent;
+        if (errorText) {
+          hasError = true;
+        }
+      });
+      if (hasError) {
+        // Forzar mostrar los mensajes de error
+        return;
+      }
       const name = addCardForm.elements['title'].value;
       const link = addCardForm.elements['link'].value;
       if (name && link) {
@@ -182,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         addCardModal.style.display = 'none';
         document.body.classList.remove('modal-open');
         addCardForm.reset();
+        addCardValidator.resetValidation();
       }
     });
 
@@ -190,6 +211,9 @@ document.addEventListener('DOMContentLoaded', function() {
       inputSelector: '.modal__input',
       submitButtonSelector: '.modal__save',
       errorClass: 'modal__input-error_visible',
+
+
+      
       errorMessages: {
         required: 'Por favor, rellena este campo.',
         tooShort: 'Texto demasiado corto.',
