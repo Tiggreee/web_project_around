@@ -1,98 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  // --- Validación modular para formularios ---
-  class FormValidator {
-    constructor(form, config) {
-      this.form = form;
-      this.inputs = Array.from(form.querySelectorAll(config.inputSelector));
-      this.button = form.querySelector(config.submitButtonSelector);
-      this.errorClass = config.errorClass;
-      this.errorMessages = config.errorMessages;
-      this.setEventListeners();
-      this.toggleButtonState();
-    }
-
-    setEventListeners() {
-      this.inputs.forEach(input => {
-        input.addEventListener('input', () => {
-          this.validateInput(input);
-          this.toggleButtonState();
-        });
-      });
-      this.form.addEventListener('submit', (e) => {
-        if (!this.form.checkValidity()) {
-          e.preventDefault();
-          this.inputs.forEach(input => this.validateInput(input));
-        }
-      });
-    }
-
-    validateInput(input) {
-      const errorElement = this.form.querySelector(`#${input.name}-error`);
-      let message = '';
-      if (input.validity.valueMissing) {
-        message = this.errorMessages.required;
-      } else if (input.type === 'text' && input.value.length < 2) {
-        message = this.errorMessages.tooShort;
-      } else if (input.name === 'link' && !this.isValidUrl(input.value)) {
-        message = this.errorMessages.url;
-      }
-      errorElement.textContent = message;
-      if (message) {
-        errorElement.classList.add(this.errorClass);
-        input.classList.add('modal__input_type_error');
-      } else {
-        errorElement.classList.remove(this.errorClass);
-        input.classList.remove('modal__input_type_error');
-      }
-    }
-
-    isValidUrl(value) {
-      // Permite URLs absolutas y rutas relativas a la carpeta images
-      try {
-        new URL(value);
-        return true;
-      } catch {
-        // Permite rutas relativas locales a la carpeta images
-        return (
-          typeof value === 'string' &&
-          (value.startsWith('./images/') || value.startsWith('/images/'))
-        );
-      }
-    }
-
-    toggleButtonState() {
-      const isValid = this.inputs.every(input => {
-        if (input.name === 'link') {
-          return input.value && this.isValidUrl(input.value);
-        }
-        return input.value && input.value.length >= 2;
-      });
-      this.button.disabled = !isValid;
-    }
-
-    resetValidation() {
-      this.inputs.forEach(input => {
-        const errorElement = this.form.querySelector(`#${input.name}-error`);
-        errorElement.textContent = '';
-        errorElement.classList.remove(this.errorClass);
-        input.classList.remove('modal__input_type_error');
-      });
-      this.toggleButtonState();
-    }
-  }
-
   // Constantes de los elementos
   const addButtonImg = document.querySelector('.header__add img');
   const editButtonImg = document.querySelector('.header__edit img');
   const editButton = document.querySelector('.header__edit');
   const editProfileModal = document.getElementById('editProfileModal');
   const closeModalBtn = document.querySelector('.modal__close');
-  const modalNameInput = document.querySelector('.modal__input[name="name"]');
+  const modalNameInput = document.querySelector('.popup__input[name="name"]');
   const headerTitle = document.querySelector('.header__title');
-  const modalAboutInput = document.querySelector('.modal__input[name="about"]');
+  const modalAboutInput = document.querySelector('.popup__input[name="about"]');
   const headerSubtitle = document.querySelector('.header__subtitle');
-  const modalForm = document.querySelector('.modal__form');
   const cardsContainer = document.getElementById('cardsContainer');
   const cardTemplate = document.getElementById('cardTemplate').content;
   const addCardModal = document.getElementById('addCardModal');
@@ -102,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const imagePopupImg = imagePopup.querySelector('.modal__image');
   const imagePopupCloseBtn = imagePopup.querySelector('.modal__close');
   const editProfileForm = document.getElementById('editProfileForm');
+  const addButton = document.querySelector('.header__add'); // <-- agrega esta línea aquí
 
   // Función para listeners de "like" en corazones 
   function addLikeListeners(img) {
@@ -148,16 +66,18 @@ document.addEventListener('DOMContentLoaded', function() {
       modalAboutInput.value = headerSubtitle.textContent;
       editProfileModal.style.display = 'flex';
       document.body.classList.add('modal-open');
+      editProfileForm.resetValidation && editProfileForm.resetValidation();
     });
     closeModalBtn.addEventListener('click', function() {
       editProfileModal.style.display = 'none';
       document.body.classList.remove('modal-open');
+      editProfileForm.resetValidation && editProfileForm.resetValidation();
     });
   }
 
   // Guardar cambios del modal en el perfil
-  if (modalForm && modalNameInput && modalAboutInput && headerTitle && headerSubtitle) {
-    modalForm.addEventListener('submit', function(e) {
+  if (editProfileForm && modalNameInput && modalAboutInput && headerTitle && headerSubtitle) {
+    editProfileForm.addEventListener('submit', function(e) {
       e.preventDefault();
       headerTitle.textContent = modalNameInput.value;
       headerSubtitle.textContent = modalAboutInput.value;
@@ -171,30 +91,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.header__add').addEventListener('click', () => {
       addCardModal.style.display = 'flex';
       document.body.classList.add('modal-open');
+      addCardForm.resetValidation && addCardForm.resetValidation();
     });
 
     // Cerrar modal al dar click en la X
     addCardCloseBtn.addEventListener('click', () => {
       addCardModal.style.display = 'none';
       document.body.classList.remove('modal-open');
+      addCardForm.resetValidation && addCardForm.resetValidation();
     });
 
     // Agregar tarjeta al enviar el formulario
     addCardForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      let hasError = false;
-      const inputs = Array.from(addCardForm.querySelectorAll('.modal__input'));
-      inputs.forEach(input => {
-        addCardValidator.validateInput(input);
-        const errorText = addCardForm.querySelector(`#${input.name}-error`).textContent;
-        if (errorText) {
-          hasError = true;
-        }
-      });
-      if (hasError) {
-        // Forzar mostrar los mensajes de error
-        return;
-      }
       const name = addCardForm.elements['title'].value;
       const link = addCardForm.elements['link'].value;
       if (name && link) {
@@ -203,105 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
         addCardModal.style.display = 'none';
         document.body.classList.remove('modal-open');
         addCardForm.reset();
-        addCardValidator.resetValidation();
+        addCardForm.resetValidation && addCardForm.resetValidation();
       }
-    });
-
-    // Validación personalizada para el formulario de agregar tarjeta
-    const addCardValidator = new FormValidator(addCardForm, {
-      inputSelector: '.modal__input',
-      submitButtonSelector: '.modal__save',
-      errorClass: 'modal__input-error_visible',
-
-
-      
-      errorMessages: {
-        required: 'Por favor, rellena este campo.',
-        tooShort: 'Texto demasiado corto.',
-        url: 'Por favor, introduce una dirección web.'
-      }
-    });
-
-    // Resetear validación al abrir/cerrar modal
-    document.querySelector('.header__add').addEventListener('click', () => {
-      addCardValidator.resetValidation();
-    });
-    addCardCloseBtn.addEventListener('click', () => {
-      addCardValidator.resetValidation();
-    });
-  }
-
-  // Validación modular para el formulario de edición de perfil
-  if (editProfileForm) {
-    class EditProfileValidator {
-      constructor(form) {
-        this.form = form;
-        this.inputs = Array.from(form.querySelectorAll('.modal__input'));
-        this.button = form.querySelector('.modal__save');
-        this.setEventListeners();
-        this.toggleButtonState();
-      }
-
-      setEventListeners() {
-        this.inputs.forEach(input => {
-          input.addEventListener('input', () => {
-            this.validateInput(input);
-            this.toggleButtonState();
-          });
-        });
-        this.form.addEventListener('submit', (e) => {
-          if (!this.form.checkValidity()) {
-            e.preventDefault();
-            this.inputs.forEach(input => this.validateInput(input));
-          }
-        });
-      }
-
-      validateInput(input) {
-        const errorElement = this.form.querySelector(`#${input.name}-error`);
-        let message = '';
-        if (!input.validity.valid) {
-          message = input.validationMessage;
-        }
-        errorElement.textContent = message;
-        if (message) {
-          errorElement.classList.add('modal__input-error_visible');
-          input.classList.add('modal__input_type_error');
-        } else {
-          errorElement.classList.remove('modal__input-error_visible');
-          input.classList.remove('modal__input_type_error');
-        }
-      }
-
-      toggleButtonState() {
-        const isValid = this.inputs.every(input => input.validity.valid);
-        this.button.disabled = !isValid;
-        if (isValid) {
-          this.button.classList.remove('modal__save_disabled');
-        } else {
-          this.button.classList.add('modal__save_disabled');
-        }
-      }
-
-      resetValidation() {
-        this.inputs.forEach(input => {
-          const errorElement = this.form.querySelector(`#${input.name}-error`);
-          errorElement.textContent = '';
-          errorElement.classList.remove('modal__input-error_visible');
-          input.classList.remove('modal__input_type_error');
-        });
-        this.toggleButtonState();
-      }
-    }
-
-    const editProfileValidator = new EditProfileValidator(editProfileForm);
-
-    // Resetear validación al abrir/cerrar modal
-    editButton.addEventListener('click', () => {
-      editProfileValidator.resetValidation();
-    });
-    closeModalBtn.addEventListener('click', () => {
-      editProfileValidator.resetValidation();
     });
   }
 
@@ -316,7 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   function createCard({ name, link }) {
-    const card = cardTemplate.cloneNode(true);
+    
+    const card = cardTemplate.cloneNode(true); 
     const img = card.querySelector('.grid__pic');
     const title = card.querySelector('.grid__title');
     const likeHeart = card.querySelector('.grid__like-heart');
@@ -330,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Eliminar tarjeta al hacer click en el trash bin
     deleteBtn.addEventListener('click', function() {
-      // Encuentra el índice de la tarjeta a eliminar
       const index = initialCards.findIndex(cardData =>
         cardData.name === name && cardData.link === link
       );
@@ -386,6 +198,154 @@ document.addEventListener('DOMContentLoaded', function() {
     imagePopupImg.src = '';
     imagePopupImg.alt = '';
   });
+
+  // Función para cerrar cualquier modal
+  function closeModal(modal) {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    if (modal.id === 'imagePopup' && imagePopupImg) {
+      imagePopupImg.src = '';
+      imagePopupImg.alt = '';
+    }
+  }
+
+  // Cerrar modal al hacer clic en la superposición (overlay)
+  document.querySelectorAll('.modal').forEach(modal => {
+    const overlay = modal.querySelector('.modal__overlay');
+    if (overlay) {
+      overlay.addEventListener('click', () => closeModal(modal));
+    }
+  });
+
+  // Cerrar modal al presionar la tecla Esc
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (modal.style.display === 'flex') {
+          closeModal(modal);
+        }
+      });
+    }
+  });
+
+  // --- VALIDACIÓN GENERAL ---
+  function enableValidation(config) {
+    const forms = Array.from(document.querySelectorAll(config.formSelector));
+    forms.forEach(form => {
+      const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+      const button = form.querySelector(config.submitButtonSelector);
+
+      function validateInput(input) {
+        const errorElement = form.querySelector(`#${input.name}-error`);
+        let message = '';
+        if (!input.validity.valid) {
+          if (input.name === 'link') {
+            // Permite URLs absolutas y rutas relativas a la carpeta images
+            try {
+              new URL(input.value);
+            } catch {
+              if (
+                typeof input.value === 'string' &&
+                (input.value.startsWith('./images/') || input.value.startsWith('/images/'))
+              ) {
+                message = '';
+              } else {
+                message = input.validationMessage;
+              }
+            }
+          } else {
+            message = input.validationMessage;
+          }
+        }
+        errorElement.textContent = message;
+        if (message) {
+          errorElement.classList.add(config.errorClass);
+          input.classList.add(config.inputErrorClass);
+        } else {
+          errorElement.classList.remove(config.errorClass);
+          input.classList.remove(config.inputErrorClass);
+        }
+      }
+
+      function toggleButtonState() {
+        const isValid = inputs.every(input => {
+          if (input.name === 'link') {
+            try {
+              new URL(input.value);
+              return true;
+            } catch {
+              return (
+                typeof input.value === 'string' &&
+                (input.value.startsWith('./images/') || input.value.startsWith('/images/'))
+              );
+            }
+          }
+          return input.validity.valid;
+        });
+        button.disabled = !isValid;
+        if (isValid) {
+          button.classList.remove(config.inactiveButtonClass);
+        } else {
+          button.classList.add(config.inactiveButtonClass);
+        }
+      }
+
+      function resetValidation() {
+        inputs.forEach(input => {
+          const errorElement = form.querySelector(`#${input.name}-error`);
+          errorElement.textContent = '';
+          errorElement.classList.remove(config.errorClass);
+          input.classList.remove(config.inputErrorClass);
+        });
+        toggleButtonState();
+      }
+
+      // Listeners
+      inputs.forEach(input => {
+        input.addEventListener('input', () => {
+          validateInput(input);
+          toggleButtonState();
+        });
+      });
+      form.addEventListener('submit', (e) => {
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          inputs.forEach(input => validateInput(input));
+        }
+      });
+
+      form.resetValidation = resetValidation;
+      resetValidation();
+    });
+  }
+
+  enableValidation({
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible"
+  });
+
+
+  if (editProfileForm && editButton && closeModalBtn) {
+    editButton.addEventListener('click', () => {
+      editProfileForm.resetValidation();
+    });
+    closeModalBtn.addEventListener('click', () => {
+      editProfileForm.resetValidation();
+    });
+  }
+
+  if (addCardForm && addCardCloseBtn && addButton) {
+    addButton.addEventListener('click', () => {
+      addCardForm.resetValidation();
+    });
+    addCardCloseBtn.addEventListener('click', () => {
+      addCardForm.resetValidation();
+    });
+  }
 
 });
 

@@ -6,7 +6,7 @@
 @import url("../blocks/modal.css");
 
 /* Asegúrate de que el formulario tenga padding suficiente */
-.modal__form {
+.popup__form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -16,21 +16,28 @@
 }
 
 /* El botón debe tener un ancho máximo del formulario y estar centrado */
-.modal__save {
+.popup__button {
   width: 100%;
   max-width: 320px;
   margin-top: 14px; /* antes 19px, ahora 14px para subirlo 5px más */
   align-self: center;
   box-sizing: border-box;
   position: static; /* Asegúrate que no sea absolute */
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
 }
 
 /* Estilos para el botón inactivo */
-.modal__save_disabled {
+.popup__button_disabled {
   background: #e5e5e5;
   color: #bdbdbd;
   cursor: not-allowed;
-  border: none;
   opacity: 0.7;
 }
 
@@ -50,6 +57,20 @@
   align-items: center;
 }
 
+/* Estilos para los inputs del popup */
+.popup__input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.popup__input_type_error {
+  border-color: #f00;
+  background: #fff0f0;
+}
+
 .modal__input-error {
   min-height: 18px;
   font-size: 12px;
@@ -62,7 +83,24 @@
   transition: opacity 0.2s;
 }
 
+.popup__error {
+  min-height: 18px;
+  font-size: 12px;
+  color: #f00;
+  margin-top: -8px;
+  margin-bottom: 0;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
 .modal__input-error_visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup__error_visible {
   opacity: 1;
   pointer-events: auto;
 }
