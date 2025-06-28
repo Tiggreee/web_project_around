@@ -86,8 +86,10 @@
         <form class="modal__form" id="addCardForm" autocomplete="off">
           <h3 class="modal__title">Nuevo lugar...</h3>
           <input class="modal__input" type="text" name="title" placeholder="Título" required maxlength="40"/>
+          <span class="modal__input-error" id="title-error"></span>
           <input class="modal__input" type="text" name="link" placeholder="URL de la imagen" required/>
-          <button class="modal__save" type="submit">Agregar</button>
+          <span class="modal__input-error" id="link-error"></span>
+          <button class="modal__save" type="submit" disabled>Agregar</button>
         </form>
       </div>
     </div>

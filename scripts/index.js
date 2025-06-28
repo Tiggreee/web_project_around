@@ -1,5 +1,80 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+  // --- Validación modular para formularios ---
+  class FormValidator {
+    constructor(form, config) {
+      this.form = form;
+      this.inputs = Array.from(form.querySelectorAll(config.inputSelector));
+      this.button = form.querySelector(config.submitButtonSelector);
+      this.errorClass = config.errorClass;
+      this.errorMessages = config.errorMessages;
+      this.setEventListeners();
+      this.toggleButtonState();
+    }
+
+    setEventListeners() {
+      this.inputs.forEach(input => {
+        input.addEventListener('input', () => {
+          this.validateInput(input);
+          this.toggleButtonState();
+        });
+      });
+      this.form.addEventListener('submit', (e) => {
+        if (!this.form.checkValidity()) {
+          e.preventDefault();
+          this.inputs.forEach(input => this.validateInput(input));
+        }
+      });
+    }
+
+    validateInput(input) {
+      const errorElement = this.form.querySelector(`#${input.name}-error`);
+      let message = '';
+      if (input.validity.valueMissing) {
+        message = this.errorMessages.required;
+      } else if (input.type === 'text' && input.value.length < 2) {
+        message = this.errorMessages.tooShort;
+      } else if (input.name === 'link' && !this.isValidUrl(input.value)) {
+        message = this.errorMessages.url;
+      }
+      errorElement.textContent = message;
+      if (message) {
+        errorElement.classList.add(this.errorClass);
+        input.classList.add('modal__input_type_error');
+      } else {
+        errorElement.classList.remove(this.errorClass);
+        input.classList.remove('modal__input_type_error');
+      }
+    }
+
+    isValidUrl(value) {
+      // Simple URL validation
+      try {
+        new URL(value);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    toggleButtonState() {
+      const isValid = this.inputs.every(input => {
+        if (input.name === 'link') {
+          return input.value && this.isValidUrl(input.value);
+        }
+        return input.value && input.value.length >= 2;
+      });
+      this.button.disabled = !isValid;
+    }
+
+    resetValidation() {
+      this.inputs.forEach(input => {
+        this.validateInput(input);
+      });
+      this.toggleButtonState();
+    }
+  }
+
   // Constantes de los elementos
   const addButtonImg = document.querySelector('.header__add img');
   const editButtonImg = document.querySelector('.header__edit img');
@@ -109,6 +184,26 @@ document.addEventListener('DOMContentLoaded', function() {
         addCardForm.reset();
       }
     });
+
+    // Validación personalizada para el formulario de agregar tarjeta
+    const addCardValidator = new FormValidator(addCardForm, {
+      inputSelector: '.modal__input',
+      submitButtonSelector: '.modal__save',
+      errorClass: 'modal__input-error_visible',
+      errorMessages: {
+        required: 'Por favor, rellena este campo.',
+        tooShort: 'Texto demasiado corto.',
+        url: 'Por favor, introduce una dirección web.'
+      }
+    });
+
+    // Resetear validación al abrir/cerrar modal
+    document.querySelector('.header__add').addEventListener('click', () => {
+      addCardValidator.resetValidation();
+    });
+    addCardCloseBtn.addEventListener('click', () => {
+      addCardValidator.resetValidation();
+    });
   }
 
   // Tarjetas dinámicas
@@ -156,6 +251,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function renderCards(cards) {
+    if (!cardsContainer) {
+      console.warn('No se encontró el contenedor de tarjetas (#cardsContainer)');
+      return;
+    }
+    if (!cardTemplate) {
+      console.warn('No se encontró el template de tarjetas (#cardTemplate)');
+      return;
+    }
     cardsContainer.innerHTML = '';
     cards.forEach(cardData => {
       const card = createCard(cardData);
