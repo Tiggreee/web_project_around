@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const imagePopup = document.getElementById('imagePopup');
   const imagePopupImg = imagePopup.querySelector('.modal__image');
   const imagePopupCloseBtn = imagePopup.querySelector('.modal__close');
+  const editProfileForm = document.getElementById('editProfileForm');
 
   // Función para listeners de "like" en corazones 
   function addLikeListeners(img) {
@@ -227,6 +228,80 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     addCardCloseBtn.addEventListener('click', () => {
       addCardValidator.resetValidation();
+    });
+  }
+
+  // Validación modular para el formulario de edición de perfil
+  if (editProfileForm) {
+    class EditProfileValidator {
+      constructor(form) {
+        this.form = form;
+        this.inputs = Array.from(form.querySelectorAll('.modal__input'));
+        this.button = form.querySelector('.modal__save');
+        this.setEventListeners();
+        this.toggleButtonState();
+      }
+
+      setEventListeners() {
+        this.inputs.forEach(input => {
+          input.addEventListener('input', () => {
+            this.validateInput(input);
+            this.toggleButtonState();
+          });
+        });
+        this.form.addEventListener('submit', (e) => {
+          if (!this.form.checkValidity()) {
+            e.preventDefault();
+            this.inputs.forEach(input => this.validateInput(input));
+          }
+        });
+      }
+
+      validateInput(input) {
+        const errorElement = this.form.querySelector(`#${input.name}-error`);
+        let message = '';
+        if (!input.validity.valid) {
+          message = input.validationMessage;
+        }
+        errorElement.textContent = message;
+        if (message) {
+          errorElement.classList.add('modal__input-error_visible');
+          input.classList.add('modal__input_type_error');
+        } else {
+          errorElement.classList.remove('modal__input-error_visible');
+          input.classList.remove('modal__input_type_error');
+        }
+      }
+
+      toggleButtonState() {
+        const isValid = this.inputs.every(input => input.validity.valid);
+        this.button.disabled = !isValid;
+        if (isValid) {
+          this.button.classList.remove('modal__save_disabled');
+        } else {
+          this.button.classList.add('modal__save_disabled');
+        }
+      }
+
+      resetValidation() {
+        this.inputs.forEach(input => {
+          const errorElement = this.form.querySelector(`#${input.name}-error`);
+          errorElement.textContent = '';
+          errorElement.classList.remove('modal__input-error_visible');
+          input.classList.remove('modal__input_type_error');
+        });
+        this.toggleButtonState();
+      }
+    }
+
+    const editProfileValidator = new EditProfileValidator(editProfileForm);
+
+    // Resetear validación al abrir/cerrar modal
+    editButton.addEventListener('click', () => {
+      editProfileValidator.resetValidation();
+    });
+    closeModalBtn.addEventListener('click', () => {
+      editProfileValidator.resetValidation();
     });
   }
 

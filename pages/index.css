@@ -25,6 +25,15 @@
   position: static; /* Asegúrate que no sea absolute */
 }
 
+/* Estilos para el botón inactivo */
+.modal__save_disabled {
+  background: #e5e5e5;
+  color: #bdbdbd;
+  cursor: not-allowed;
+  border: none;
+  opacity: 0.7;
+}
+
 /* Asegúrate que el modal__content tenga suficiente ancho */
 .modal__content {
   overflow: visible;
