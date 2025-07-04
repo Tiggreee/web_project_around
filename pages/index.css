@@ -5,7 +5,6 @@
 @import url('../blocks/footer.css');
 @import url("../blocks/modal.css");
 
-/* Asegúrate de que el formulario tenga padding suficiente */
 .popup__form {
   width: 100%;
   display: flex;
@@ -13,9 +12,9 @@
   align-items: stretch;
   gap: 12px;
   box-sizing: border-box;
+  max-height: 100%;
 }
 
-/* El botón debe tener un ancho máximo del formulario y estar centrado */
 .popup__button {
   width: 100%;
   max-width: 320px;
@@ -33,7 +32,6 @@
   transition: background 0.2s, color 0.2s, opacity 0.2s;
 }
 
-/* Estilos para el botón inactivo */
 .popup__button_disabled {
   background: #e5e5e5;
   color: #bdbdbd;
@@ -41,7 +39,6 @@
   opacity: 0.7;
 }
 
-/* Asegúrate que el modal__content tenga suficiente ancho */
 .modal__content {
   overflow: visible;
   min-width: 320px;
@@ -57,7 +54,6 @@
   align-items: center;
 }
 
-/* Estilos para los inputs del popup */
 .popup__input {
   padding: 8px;
   font-size: 16px;
@@ -93,6 +89,8 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s;
+  height: auto;
+  visibility: visible;
 }
 
 .modal__input-error_visible {
@@ -103,6 +101,9 @@
 .popup__error_visible {
   opacity: 1;
   pointer-events: auto;
+  height: auto;
+  visibility: visible;
+  display: block;
 }
 
 /* Botón like normal */

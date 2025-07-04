@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 message = input.validationMessage;
               }
             }
+          } else if (input.validity.tooShort) {
+            message = `Extiende este texto para que tenga ${input.minLength} caracteres o más (actualmente usas ${input.value.length} carácter${input.value.length === 1 ? '' : 'es'}).`;
           } else {
             message = input.validationMessage;
           }

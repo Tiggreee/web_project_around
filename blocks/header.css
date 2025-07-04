@@ -1,3 +1,12 @@
+/* Efecto hover para el botón de agregar tarjeta */
+.header__add img:hover {
+  content: url('../images/add_button-hover.png');
+}
+
+/* Efecto hover para el botón de editar perfil */
+.header__edit img:hover {
+  content: url('../images/edit_button-hover.png');
+}
 .header { /* Update after review */
   width: 100%;
   background: #000;
