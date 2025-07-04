@@ -104,3 +104,38 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+/* Botón like normal */
+.grid__like {
+    background: url('../images/heart_logo-unact.jpg') no-repeat center;
+    width: 22px;
+    height: 19px;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+/* Botón like activo */
+.grid__like.grid__like_active {
+    background: url('../images/heart_logo-act.jpg') no-repeat center;
+}
+
+/* Efecto hover para like */
+.grid__like:hover {
+    filter: brightness(1.2);
+}
+
+/* Botón delete normal */
+.grid__delete {
+    background: url('../images/trash.svg') no-repeat center;
+    width: 18px;
+    height: 19px;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+/* Efecto hover para delete */
+.grid__delete:hover {
+    filter: brightness(0.7);
+}

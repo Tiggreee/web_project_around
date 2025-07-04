@@ -67,6 +67,8 @@
 }
 
 .header__row {
+
+
   display: flex;
   align-items: center;
   gap: 8px;
@@ -79,12 +81,13 @@
   font-weight: 700;
   color: #fff;
   margin: 0;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
   display: block;
   max-width: 100%;
 }
+
 
 .header__edit {
   background: none;
@@ -105,11 +108,11 @@
   font-weight: 400;
   color: #bdbdbd;
   margin: 8px 0 20px 0;
-  text-align: center;
-  align-self: center;
+  text-align: left;
+  align-self: flex-start;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
   display: block;
   max-width: 100%;
 }
@@ -185,7 +188,7 @@
     box-sizing: border-box;
     box-shadow: none;
     border: none;
-    gap: 32px;
+    gap: 10px;
   }
   .header__pic {
     width: 120px;
@@ -356,5 +359,14 @@
     text-align: left;
     align-self: flex-start;
   }
+}
+
+.header__title,
+.header__subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  max-width: 350px; /* Aumentado 15px respecto a 320px */
 }
 

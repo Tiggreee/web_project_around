@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Los efectos hover de los botones de agregar y editar imagen se manejan ahora solo con CSS.
 
   // Constantes de los elementos
   const addButtonImg = document.querySelector('.header__add img');
@@ -21,43 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const editProfileForm = document.getElementById('editProfileForm');
   const addButton = document.querySelector('.header__add'); // <-- agrega esta línea aquí
 
-  // Función para listeners de "like" en corazones 
-  function addLikeListeners(img) {
-    let liked = false;
-    img.addEventListener('mouseenter', function() {
-      if (!liked) img.src = './images/heart_logo-hover.jpg';
-    });
-    img.addEventListener('mouseleave', function() {
-      img.src = liked ? './images/heart_logo-act.jpg' : './images/heart_logo-unact.jpg';
-    });
-    img.addEventListener('click', function() {
-      liked = !liked;
-      img.src = liked ? './images/heart_logo-act.jpg' : './images/heart_logo-unact.jpg';
-    });
-  }
-
-  // Hover para el botón de agregar imagen
-  if (addButtonImg) {
-    const originalSrc = './images/add_button.png';
-    addButtonImg.src = originalSrc;
-    addButtonImg.addEventListener('mouseenter', function() {
-      addButtonImg.src = './images/add_button-hover.png';
-    });
-    addButtonImg.addEventListener('mouseleave', function() {
-      addButtonImg.src = originalSrc;
-    });
-  }
-
-  // Hover para el botón de editar perfil
-  if (editButtonImg) {
-    const originalEditSrc = editButtonImg.src;
-    editButtonImg.addEventListener('mouseenter', function() {
-      editButtonImg.src = './images/edit_button-hover.png';
-    });
-    editButtonImg.addEventListener('mouseleave', function() {
-      editButtonImg.src = originalEditSrc;
-    });
-  }
+  // Los efectos hover de los botones de agregar y editar imagen se manejan ahora solo con CSS.
 
   // Mostrar y ocultar el modal de edición de perfil y rellenar el input con el header__title
   if (editButton && editProfileModal && closeModalBtn && modalNameInput && headerTitle) {
@@ -128,34 +93,28 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   function createCard({ name, link }) {
-    
     const card = cardTemplate.cloneNode(true); 
     const img = card.querySelector('.grid__pic');
     const title = card.querySelector('.grid__title');
-    const likeHeart = card.querySelector('.grid__like-heart');
+    const likeBtn = card.querySelector('.grid__like');
+    const likeImg = likeBtn.querySelector('.grid__like-heart');
     const deleteBtn = card.querySelector('.grid__delete');
 
     img.src = link;
     img.alt = name;
     title.textContent = name;
 
-    addLikeListeners(likeHeart);
-
-    // Eliminar tarjeta al hacer click en el trash bin
-    deleteBtn.addEventListener('click', function() {
-      const index = initialCards.findIndex(cardData =>
-        cardData.name === name && cardData.link === link
-      );
-      if (index !== -1) {
-        initialCards.splice(index, 1); 
-        renderCards(initialCards);
+    // Cambia la imagen del corazón al dar click
+    likeBtn.addEventListener('click', function() {
+      if (likeImg.src.includes('heart_logo-unact')) {
+        likeImg.src = likeImg.src.replace('heart_logo-unact', 'heart_logo-act');
+      } else {
+        likeImg.src = likeImg.src.replace('heart_logo-act', 'heart_logo-unact');
       }
     });
-    deleteBtn.addEventListener('mouseenter', function() {
-      deleteBtn.querySelector('.grid__delete-icon').src = './images/trashbin-hover.png';
-    });
-    deleteBtn.addEventListener('mouseleave', function() {
-      deleteBtn.querySelector('.grid__delete-icon').src = './images/trashbin.png';
+
+    deleteBtn.addEventListener('click', function() {
+      deleteBtn.closest('.grid__item').remove();
     });
 
     return card;
@@ -228,4 +187,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-}); 
+});
