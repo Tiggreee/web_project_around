@@ -18,10 +18,10 @@
 .popup__button {
   width: 100%;
   max-width: 320px;
-  margin-top: 14px; /* antes 19px, ahora 14px para subirlo 5px más */
+  margin-top: 14px; 
   align-self: center;
   box-sizing: border-box;
-  position: static; /* Asegúrate que no sea absolute */
+  position: static;
   background: #000;
   color: #fff;
   border: none;
@@ -75,7 +75,7 @@
   margin-bottom: 0;
   display: block;
   opacity: 0;
-  pointer-events: none; /* Asegura que no interfiera con el input */
+  pointer-events: none; 
   transition: opacity 0.2s;
 }
 
@@ -123,12 +123,12 @@
 
 /* Efecto hover para like */
 .grid__like:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.5);
 }
 
 /* Botón delete normal */
 .grid__delete {
-    background: url('../images/trash.svg') no-repeat center;
+    background: url('../images/trashbin.png') no-repeat center;
     width: 18px;
     height: 19px;
     border: none;

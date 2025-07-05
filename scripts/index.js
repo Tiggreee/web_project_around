@@ -1,4 +1,3 @@
-// Instanciar la validación para cada formulario
 import FormValidator from './formValidator.js';
 
 const validationConfig = {
@@ -10,16 +9,19 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 };
 
+// Instancias de validadores
 const forms = Array.from(document.querySelectorAll(validationConfig.formSelector));
+const validators = {};
 forms.forEach(form => {
   const validator = new FormValidator(validationConfig, form);
   validator.enableValidation();
+  if (form.id) {
+    validators[form.id] = validator;
+  }
 });
 import Card from './card.js';
-import FormValidator from './formValidator.js';
 import { openModal, closeModal } from './utils.js';
 
-// Constantes de los elementos
 const addButtonImg = document.querySelector('.header__add img');
 const editButtonImg = document.querySelector('.header__edit img');
 const editButton = document.querySelector('.header__edit');
@@ -31,6 +33,7 @@ const modalAboutInput = document.querySelector('.popup__input[name="about"]');
 const headerSubtitle = document.querySelector('.header__subtitle');
 const cardsContainer = document.getElementById('cardsContainer');
 const cardTemplateSelector = '#cardTemplate';
+const cardTemplate = document.querySelector(cardTemplateSelector);
 const addCardModal = document.getElementById('addCardModal');
 const addCardForm = document.getElementById('addCardForm');
 const addCardCloseBtn = addCardModal.querySelector('.modal__close');
@@ -46,11 +49,15 @@ if (editButton && editProfileModal && closeModalBtn && modalNameInput && headerT
     modalNameInput.value = headerTitle.textContent;
     modalAboutInput.value = headerSubtitle.textContent;
     openModal(editProfileModal);
-    editProfileForm.resetValidation && editProfileForm.resetValidation();
+    if (validators['editProfileForm']) {
+      validators['editProfileForm'].resetValidation();
+    }
   });
   closeModalBtn.addEventListener('click', function() {
     closeModal(editProfileModal);
-    editProfileForm.resetValidation && editProfileForm.resetValidation();
+    if (validators['editProfileForm']) {
+      validators['editProfileForm'].resetValidation();
+    }
   });
 }
 
@@ -105,31 +112,8 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
   ];
 
   function createCard({ name, link }) {
-    const card = cardTemplate.cloneNode(true); 
-    const img = card.querySelector('.grid__pic');
-    const title = card.querySelector('.grid__title');
-    const likeBtn = card.querySelector('.grid__like');
-    const likeImg = likeBtn.querySelector('.grid__like-heart');
-    const deleteBtn = card.querySelector('.grid__delete');
-
-    img.src = link;
-    img.alt = name;
-    title.textContent = name;
-
-    // Cambia la imagen del corazón al dar click
-    likeBtn.addEventListener('click', function() {
-      if (likeImg.src.includes('heart_logo-unact')) {
-        likeImg.src = likeImg.src.replace('heart_logo-unact', 'heart_logo-act');
-      } else {
-        likeImg.src = likeImg.src.replace('heart_logo-act', 'heart_logo-unact');
-      }
-    });
-
-    deleteBtn.addEventListener('click', function() {
-      deleteBtn.closest('.grid__item').remove();
-    });
-
-    return card;
+    const card = new Card(name, link, cardTemplateSelector);
+    return card.generateCard();
   }
 
   function renderCards(cards) {
@@ -170,16 +154,6 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
     imagePopupImg.alt = '';
   });
 
-  // Función para cerrar cualquier modal
-  function closeModal(modal) {
-    modal.style.display = 'none';
-    document.body.classList.remove('modal-open');
-    if (modal.id === 'imagePopup' && imagePopupImg) {
-      imagePopupImg.src = '';
-      imagePopupImg.alt = '';
-    }
-  }
-
   // Cerrar modal al hacer clic en la superposición (overlay)
   document.querySelectorAll('.modal').forEach(modal => {
     const overlay = modal.querySelector('.modal__overlay');
@@ -199,4 +173,3 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
     }
   });
 
-// ...resto del código modularizado...

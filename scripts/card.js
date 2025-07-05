@@ -33,6 +33,12 @@ export default class Card {
     _setEventListeners() {
         this.buttonLike.addEventListener('click', () => {
             this.buttonLike.classList.toggle('grid__like_active');
+            const heartImg = this.buttonLike.querySelector('.grid__like-heart');
+            if (this.buttonLike.classList.contains('grid__like_active')) {
+                heartImg.src = './images/heart_logo-act.jpg';
+            } else {
+                heartImg.src = './images/heart_logo-unact.jpg';
+            }
         });
 
         this.buttonDelete.addEventListener('click', () => {
