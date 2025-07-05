@@ -35,13 +35,6 @@ Cosas por mejorar
 - Agregar animaciones más suaves y microinteracciones.
 
 
-Puedes ver el proyecto publicado aquí:
-
-
->   https://tiggreee.github.io/web_project_around/
-
-
-
 ## Actualización Fase 8 - Tarjetas Dinámicas
 
 A partir de la entrega del sprint número 8, resulta una implementación diferente de las tarjetas en la galería, ahora se generan dinámicamente desde JavaScript. También puedes agregar nuevas tarjetas usando el botón "+" en la parte superior derecha.
@@ -67,12 +60,16 @@ También puedes eliminar cualquier tarjeta de la galería usando el ícono de "t
 
 -> **Nota:** Puedes repetir el proceso para agregar tantas tarjetas como quieras, usando cualquier título y cualquiera de las imágenes mencionadas arriba o alguna URL que aloje una imagen. También cabe señalar que el popup de la imagen se adapta a el tamaño de la misma, claro, bajo los principios del diseño pero también para imagenes pequeñas para eficientar el tamaño del archivo raiz.
 
+## Actualización fase 9 - Refactorización y validación modular
+
+En la novena etapa del proyecto, me enfoqué en mejorar la validación de los formularios y en separar la lógica de validación en un archivo independiente. Esto permitió que el código fuera más organizado y fácil de mantener, evitando duplicidad y facilitando futuras mejoras. La validación ahora es más robusta y universal, aprovechando las capacidades de ValidityState y los atributos HTML5. Además, la estructura modular sentó las bases para una integración más limpia de nuevas funcionalidades, haciendo que el desarrollo sea mucho más ágil y comprensible. Esta fase fue clave para dar el salto hacia una arquitectura más profesional y escalable, cumpliendo con los estándares de TripleTen y preparándome para retos más avanzados.
+
+
+## Actualizacion fase 10 - Refactorización final y modularización avanzada
+
+En esta etapa, el proyecto fue reorganizado completamente en módulos basados en ES6 para mejorar la escalabilidad y el mantenimiento. Se implementaron las clases Card y FormValidator, cada una en su propio archivo. La lógica de control de modales y utilidades se trasladó a utils.js, mientras que index.js integra y coordina todos los módulos. La validación de formularios ahora es universal y reutilizable, y la generación de tarjetas es flexible y orientada a objetos. El código es más limpio, estructurado y fácil de extender, cumpliendo con lo que considero, las mejores prácticas de JS moderno.
 
 
 Este proyecto es parte de mi aprendizaje, así que cualquier feedback es bienvenido. ¡Gracias por visitar mi trabajo!
 
 >   https://tiggreee.github.io/web_project_around/
-
-## 9. Refactorización y validación modular
-
-En esta fase, nos encargamos de la validación de formularios, además de que separamos la lógica de validación en un archivo independiente (`validate.js`) y mantuvimos la lógica de tarjetas en `index.js`. Esto mejora la organización, evita duplicidad de código y facilita el mantenimiento, cumpliendo con los estándares de modularidad y buenas prácticas de JavaScript.

@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
     constructor(name, link, templateSelector) {
         this._name = name;
         this._link = link;
@@ -40,7 +40,7 @@ class Card {
         });
 
         this.cardImage.addEventListener('click', () => {
-            // Aquí puedes abrir el popup de imagen si lo necesitas
+            // Aquí puedo abrir el popup de imagen si lo necesito
         });
     }
 }

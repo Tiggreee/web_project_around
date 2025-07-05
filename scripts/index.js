@@ -1,65 +1,77 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Los efectos hover de los botones de agregar y editar imagen se manejan ahora solo con CSS.
+// Instanciar la validación para cada formulario
+import FormValidator from './formValidator.js';
 
-  // Constantes de los elementos
-  const addButtonImg = document.querySelector('.header__add img');
-  const editButtonImg = document.querySelector('.header__edit img');
-  const editButton = document.querySelector('.header__edit');
-  const editProfileModal = document.getElementById('editProfileModal');
-  const closeModalBtn = document.querySelector('.modal__close');
-  const modalNameInput = document.querySelector('.popup__input[name="name"]');
-  const headerTitle = document.querySelector('.header__title');
-  const modalAboutInput = document.querySelector('.popup__input[name="about"]');
-  const headerSubtitle = document.querySelector('.header__subtitle');
-  const cardsContainer = document.getElementById('cardsContainer');
-  const cardTemplate = document.getElementById('cardTemplate').content;
-  const addCardModal = document.getElementById('addCardModal');
-  const addCardForm = document.getElementById('addCardForm');
-  const addCardCloseBtn = addCardModal.querySelector('.modal__close');
-  const imagePopup = document.getElementById('imagePopup');
-  const imagePopupImg = imagePopup.querySelector('.modal__image');
-  const imagePopupCloseBtn = imagePopup.querySelector('.modal__close');
-  const editProfileForm = document.getElementById('editProfileForm');
-  const addButton = document.querySelector('.header__add'); // <-- agrega esta línea aquí
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
-  // Los efectos hover de los botones de agregar y editar imagen se manejan ahora solo con CSS.
+const forms = Array.from(document.querySelectorAll(validationConfig.formSelector));
+forms.forEach(form => {
+  const validator = new FormValidator(validationConfig, form);
+  validator.enableValidation();
+});
+import Card from './card.js';
+import FormValidator from './formValidator.js';
+import { openModal, closeModal } from './utils.js';
 
-  // Mostrar y ocultar el modal de edición de perfil y rellenar el input con el header__title
-  if (editButton && editProfileModal && closeModalBtn && modalNameInput && headerTitle) {
-    editButton.addEventListener('click', function() {
-      modalNameInput.value = headerTitle.textContent;
-      modalAboutInput.value = headerSubtitle.textContent;
-      editProfileModal.style.display = 'flex';
-      document.body.classList.add('modal-open');
-      editProfileForm.resetValidation && editProfileForm.resetValidation();
-    });
-    closeModalBtn.addEventListener('click', function() {
-      editProfileModal.style.display = 'none';
-      document.body.classList.remove('modal-open');
-      editProfileForm.resetValidation && editProfileForm.resetValidation();
-    });
-  }
+// Constantes de los elementos
+const addButtonImg = document.querySelector('.header__add img');
+const editButtonImg = document.querySelector('.header__edit img');
+const editButton = document.querySelector('.header__edit');
+const editProfileModal = document.getElementById('editProfileModal');
+const closeModalBtn = document.querySelector('.modal__close');
+const modalNameInput = document.querySelector('.popup__input[name="name"]');
+const headerTitle = document.querySelector('.header__title');
+const modalAboutInput = document.querySelector('.popup__input[name="about"]');
+const headerSubtitle = document.querySelector('.header__subtitle');
+const cardsContainer = document.getElementById('cardsContainer');
+const cardTemplateSelector = '#cardTemplate';
+const addCardModal = document.getElementById('addCardModal');
+const addCardForm = document.getElementById('addCardForm');
+const addCardCloseBtn = addCardModal.querySelector('.modal__close');
+const imagePopup = document.getElementById('imagePopup');
+const imagePopupImg = imagePopup.querySelector('.modal__image');
+const imagePopupCloseBtn = imagePopup.querySelector('.modal__close');
+const editProfileForm = document.getElementById('editProfileForm');
+const addButton = document.querySelector('.header__add');
 
-  // Guardar cambios del modal en el perfil
-  if (editProfileForm && modalNameInput && modalAboutInput && headerTitle && headerSubtitle) {
-    editProfileForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      headerTitle.textContent = modalNameInput.value;
-      headerSubtitle.textContent = modalAboutInput.value;
-      editProfileModal.style.display = 'none';
-      document.body.classList.remove('modal-open');
-    });
-  }
+// Mostrar y ocultar el modal de edición de perfil y rellenar el input con el header__title
+if (editButton && editProfileModal && closeModalBtn && modalNameInput && headerTitle) {
+  editButton.addEventListener('click', function() {
+    modalNameInput.value = headerTitle.textContent;
+    modalAboutInput.value = headerSubtitle.textContent;
+    openModal(editProfileModal);
+    editProfileForm.resetValidation && editProfileForm.resetValidation();
+  });
+  closeModalBtn.addEventListener('click', function() {
+    closeModal(editProfileModal);
+    editProfileForm.resetValidation && editProfileForm.resetValidation();
+  });
+}
 
-  // Lógica para el modal de agregar tarjeta
-  if (addCardModal && addCardForm && addCardCloseBtn) {
-    document.querySelector('.header__add').addEventListener('click', () => {
-      addCardModal.style.display = 'flex';
-      document.body.classList.add('modal-open');
-      addCardForm.resetValidation && addCardForm.resetValidation();
-    });
+// Guardar cambios del modal en el perfil
+if (editProfileForm && modalNameInput && modalAboutInput && headerTitle && headerSubtitle) {
+  editProfileForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    headerTitle.textContent = modalNameInput.value;
+    headerSubtitle.textContent = modalAboutInput.value;
+    closeModal(editProfileModal);
+  });
+}
 
-    // Cerrar modal al dar click en la X
+// Lógica para el modal de agregar tarjeta
+if (addCardModal && addCardForm && addCardCloseBtn) {
+  document.querySelector('.header__add').addEventListener('click', () => {
+    openModal(addCardModal);
+    addCardForm.resetValidation && addCardForm.resetValidation();
+  });
+
+  // Cerrar modal al dar click en la X
     addCardCloseBtn.addEventListener('click', () => {
       addCardModal.style.display = 'none';
       document.body.classList.remove('modal-open');
@@ -187,4 +199,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-});
+// ...resto del código modularizado...
