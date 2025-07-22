@@ -7,7 +7,7 @@
 .header__edit img:hover {
   content: url('../images/edit_button-hover.png');
 }
-.header { /* Update after review */
+.header {
   width: 100%;
   background: #000;
   padding-top: 25px;
@@ -24,7 +24,7 @@
   min-height: 48px;
 }
 
-.header__logo { /* Update after review */
+.header__logo {
   width: 100%;
   height: auto;
   margin: 0 auto 20px auto;
@@ -32,7 +32,7 @@
   object-fit: contain;
 }
 
-.header picture { /* Update after review */
+.header picture {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -52,7 +52,7 @@
   box-sizing: border-box;
 }
 
-.header__info { /* Update after review */
+.header__info {
   --header-info-width: 282px;
   background: none;
   border-radius: 0; 
@@ -168,7 +168,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .header__logo { /* Update after review */
+  .header__logo {
     width: 100%;
     height: 120px;
     max-width: 880px;
@@ -176,13 +176,13 @@
     display: block;
     object-fit: contain;
   }
-  .header picture img { /* Update after review */
+  .header picture img {
     width: 100%;
     max-width: 880px;
     height: 100px;
     padding: 0 10px 0 10px;
   }
-  .header__info { /* Update after review */
+  .header__info {
     --header-info-width: 880px;
     width: 100%;
     max-width: 880px;
@@ -284,7 +284,7 @@
 }
 
 @media (min-width: 600px) and (max-width: 899px) {
-  .header {/* Update after review */
+  .header {
     max-width: 720px;
     margin: 0 auto 24px auto;
     padding-top: 24px;
@@ -303,7 +303,7 @@
     margin: 0 auto;
     padding: 0;
   }
-  .header__info { /* Update after review */
+  .header__info {
     --header-info-width: 600px;
     width: 100%;
     max-width: 600px;
@@ -356,7 +356,7 @@
 }
 
 @media (min-width: 900px) {
-  .header__info { /* Update after review */
+  .header__info {
     --header-info-width: 880px;
     max-width: 880px;
     padding: 40px 0 45px 0;
@@ -376,6 +376,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
-  max-width: 350px; /* Aumentado 15px respecto a 320px */
+  max-width: 350px;
 }
 

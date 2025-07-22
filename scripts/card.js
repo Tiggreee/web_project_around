@@ -1,8 +1,9 @@
 export default class Card {
-    constructor(name, link, templateSelector) {
+    constructor(name, link, templateSelector, handleCardClick) {
         this._name = name;
         this._link = link;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -46,7 +47,9 @@ export default class Card {
         });
 
         this.cardImage.addEventListener('click', () => {
-            // Aquí puedo abrir el popup de imagen si lo necesito
+            if (typeof this._handleCardClick === 'function') {
+                this._handleCardClick({ src: this._link, alt: this._name, caption: this._name });
+            }
         });
     }
 }

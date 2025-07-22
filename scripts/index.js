@@ -9,7 +9,6 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-// Instancias de validadores
 const forms = Array.from(document.querySelectorAll(validationConfig.formSelector));
 const validators = {};
 forms.forEach(form => {
@@ -43,7 +42,6 @@ const imagePopupCloseBtn = imagePopup.querySelector('.modal__close');
 const editProfileForm = document.getElementById('editProfileForm');
 const addButton = document.querySelector('.header__add');
 
-// Mostrar y ocultar el modal de edición de perfil y rellenar el input con el header__title
 if (editButton && editProfileModal && closeModalBtn && modalNameInput && headerTitle) {
   editButton.addEventListener('click', function() {
     modalNameInput.value = headerTitle.textContent;
@@ -61,7 +59,6 @@ if (editButton && editProfileModal && closeModalBtn && modalNameInput && headerT
   });
 }
 
-// Guardar cambios del modal en el perfil
 if (editProfileForm && modalNameInput && modalAboutInput && headerTitle && headerSubtitle) {
   editProfileForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -71,21 +68,18 @@ if (editProfileForm && modalNameInput && modalAboutInput && headerTitle && heade
   });
 }
 
-// Lógica para el modal de agregar tarjeta
 if (addCardModal && addCardForm && addCardCloseBtn) {
   document.querySelector('.header__add').addEventListener('click', () => {
     openModal(addCardModal);
     addCardForm.resetValidation && addCardForm.resetValidation();
   });
 
-  // Cerrar modal al dar click en la X
     addCardCloseBtn.addEventListener('click', () => {
       addCardModal.style.display = 'none';
       document.body.classList.remove('modal-open');
       addCardForm.resetValidation && addCardForm.resetValidation();
     });
 
-    // Agregar tarjeta al enviar el formulario
     addCardForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const name = addCardForm.elements['title'].value;
@@ -101,7 +95,6 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
     });
   }
 
-  // Tarjetas dinámicas
   const initialCards = [
     { name: "Valle de Yosemite", link: "./images/paisaje1.jpg" },
     { name: "Lago Louise", link: "./images/paisaje2.webp" },
@@ -132,10 +125,8 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
     });
   }
 
-  // Renderiza las tarjetas iniciales
   renderCards(initialCards);
 
-  // Abrir popup al hacer click en una imagen de tarjeta
   cardsContainer.addEventListener('click', function(e) {
     const img = e.target.closest('.grid__pic');
     if (img) {
@@ -146,7 +137,6 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
     }
   });
 
-  // Cerrar popup al dar click en la X
   imagePopupCloseBtn.addEventListener('click', function() {
     imagePopup.style.display = 'none';
     document.body.classList.remove('modal-open');
@@ -154,7 +144,6 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
     imagePopupImg.alt = '';
   });
 
-  // Cerrar modal al hacer clic en la superposición (overlay)
   document.querySelectorAll('.modal').forEach(modal => {
     const overlay = modal.querySelector('.modal__overlay');
     if (overlay) {
@@ -162,7 +151,6 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
     }
   });
 
-  // Cerrar modal al presionar la tecla Esc
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' || e.key === 'Esc') {
       document.querySelectorAll('.modal').forEach(modal => {

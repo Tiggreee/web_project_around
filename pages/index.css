@@ -1,10 +1,3 @@
-@import url("../vendor/normalize.css");
-@import url("../blocks/body.css");
-@import url('../blocks/header.css');
-@import url('../blocks/grid.css');
-@import url('../blocks/footer.css');
-@import url("../blocks/modal.css");
-
 .popup__form {
   width: 100%;
   display: flex;
@@ -106,7 +99,6 @@
   display: block;
 }
 
-/* Botón like normal */
 .grid__like {
     background: url('../images/heart_logo-unact.jpg') no-repeat center;
     width: 22px;
@@ -116,17 +108,14 @@
     transition: filter 0.2s;
 }
 
-/* Botón like activo */
 .grid__like.grid__like_active {
     background: url('../images/heart_logo-act.jpg') no-repeat center;
 }
 
-/* Efecto hover para like */
 .grid__like:hover {
     filter: brightness(1.5);
 }
 
-/* Botón delete normal */
 .grid__delete {
     background: url('../images/trashbin.png') no-repeat center;
     width: 18px;
@@ -136,7 +125,6 @@
     transition: filter 0.2s;
 }
 
-/* Efecto hover para delete */
 .grid__delete:hover {
     filter: brightness(0.7);
 }
