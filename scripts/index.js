@@ -30,7 +30,7 @@ const modalNameInput = document.querySelector('.popup__input[name="name"]');
 const headerTitle = document.querySelector('.header__title');
 const modalAboutInput = document.querySelector('.popup__input[name="about"]');
 const headerSubtitle = document.querySelector('.header__subtitle');
-const cardsContainer = document.getElementById('cardsContainer');
+const cardsContainer = document.querySelector('.cards__list');
 const cardTemplateSelector = '#cardTemplate';
 const cardTemplate = document.querySelector(cardTemplateSelector);
 const addCardModal = document.getElementById('addCardModal');
@@ -147,7 +147,15 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
   document.querySelectorAll('.modal').forEach(modal => {
     const overlay = modal.querySelector('.modal__overlay');
     if (overlay) {
-      overlay.addEventListener('click', () => closeModal(modal));
+      overlay.addEventListener('click', () => {
+        closeModal(modal);
+        if (modal === addCardModal) {
+          addCardForm.reset();
+          if (validators['addCardForm']) {
+            validators['addCardForm'].resetValidation();
+          }
+        }
+      });
     }
   });
 
@@ -156,6 +164,12 @@ if (addCardModal && addCardForm && addCardCloseBtn) {
       document.querySelectorAll('.modal').forEach(modal => {
         if (modal.style.display === 'flex') {
           closeModal(modal);
+          if (modal === addCardModal) {
+            addCardForm.reset();
+            if (validators['addCardForm']) {
+              validators['addCardForm'].resetValidation();
+            }
+          }
         }
       });
     }
