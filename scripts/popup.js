@@ -23,10 +23,18 @@ export default class Popup {
   }
 
   setEventListeners() {
+<<<<<<< HEAD
+=======
+    // Cerrar al hacer click en el icono de cerrar
+>>>>>>> f2e0e441fc8ef1a3d12bc11928dd9edeb1b80d92
     const closeButton = this._popup.querySelector('.modal__close');
     if (closeButton) {
       closeButton.addEventListener('click', () => this.close());
     }
+<<<<<<< HEAD
+=======
+    // Cerrar al hacer click en el overlay
+>>>>>>> f2e0e441fc8ef1a3d12bc11928dd9edeb1b80d92
     const overlay = this._popup.querySelector('.modal__overlay');
     if (overlay) {
       overlay.addEventListener('click', () => this.close());
