@@ -1,4 +1,4 @@
-## Proyecto: Around The U.S.
+## Proyecto: Around The U.S. 
 
 Este es el paso número 7 de mi travesía en TripleTen.
 El objetivo principal fue crear una página interactiva inspirada en la red social "Around The U.S.", aplicando conceptos de HTML, CSS y JavaScript.
@@ -70,6 +70,18 @@ En la novena etapa del proyecto, me enfoqué en mejorar la validación de los fo
 En esta etapa, el proyecto fue reorganizado completamente en módulos basados en ES6 para mejorar la escalabilidad y el mantenimiento. Se implementaron las clases Card y FormValidator, cada una en su propio archivo. La lógica de control de modales y utilidades se trasladó a utils.js, mientras que index.js integra y coordina todos los módulos. La validación de formularios ahora es universal y reutilizable, y la generación de tarjetas es flexible y orientada a objetos. El código es más limpio, estructurado y fácil de extender, cumpliendo con lo que considero, las mejores prácticas de JS moderno.
 
 
-Este proyecto es parte de mi aprendizaje, así que cualquier feedback es bienvenido. ¡Gracias por visitar mi trabajo!
+## Actualización fase 11 - Resolución de conflictos y mejoras en la estructura modular
+
+En esta undécima etapa, el enfoque principal fue la consolidación de la estructura modular del proyecto. Se revisaron y limpiaron los archivos, asegurando que la lógica de las clases y módulos estuviera unificada. Además, se mejoró la organización del código, reforzando la separación de responsabilidades entre los componentes, especialmente en la gestión de popups y formularios. Esta fase permitió optimizar la mantenibilidad y claridad del proyecto, facilitando futuras colaboraciones y ampliaciones.
+
+
+
+Este proyecto y los que vienen han sido parte de mi aprendizaje, así que cualquier feedback es bienvenido. ¡Gracias por visitar mi trabajo!
+
+
 
 >   https://tiggreee.github.io/web_project_around/
+
+
+
+(Todo el timepo ha sido en honor a Renata; ¡Te amo mi mama linda!)
