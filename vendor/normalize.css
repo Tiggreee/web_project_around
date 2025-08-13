@@ -85,7 +85,6 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -198,12 +197,9 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
+  appearance: button; /* Propiedad estándar */
+  -webkit-appearance: button; /* Para navegadores webkit */
 }
-
-/**
- * Elimina el borde interior y el padding en Firefox.
- */
 
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -290,16 +286,29 @@ textarea {
  */
 
 [type="search"] {
+  appearance: textfield; /* Propiedad estándar */
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
 
-/**
- * Elimina el padding interior en Chrome y Safari, en macOS.
- */
+::-webkit-file-upload-button {
+  appearance: button; /* Propiedad estándar */
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
 
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+
+[type="search"] {
+  appearance: textfield; /* Propiedad estándar */
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/* Y en la otra sección: */
+::-webkit-file-upload-button {
+  appearance: button; /* Propiedad estándar */
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
 }
 
 /**
