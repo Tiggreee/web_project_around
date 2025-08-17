@@ -4,7 +4,7 @@ export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector, handleConfirm) {
     super(popupSelector);
     this._handleConfirm = handleConfirm;
-    this._confirmButton = this._popup.querySelector('.modal__save');
+    this._confirmButton = this._popup.querySelector('.popup__button_type_delete');
     this._cardId = null;
   }
 

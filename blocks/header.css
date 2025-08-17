@@ -73,6 +73,29 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 18px;
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.header__pic:hover {
+  opacity: 0.8;
+}
+
+.header__pic::after {
+  content: "✏️";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.header__pic:hover::after {
+  opacity: 1;
 }
 
 .header__row {

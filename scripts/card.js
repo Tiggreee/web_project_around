@@ -33,10 +33,16 @@ export default class Card {
     cardImage.alt = this._name;
     cardTitle.textContent = this._name;
 
-    if (this._owner._id !== this._userId) {
+    // Arreglar la comparación: owner puede ser string o objeto
+    const ownerId = typeof this._owner === 'string' ? this._owner : this._owner?._id;
+    console.log('Owner ID procesado:', ownerId, 'User ID:', this._userId);
+    
+    // Solo mostrar botón de eliminar si es del usuario actual
+    if (ownerId !== this._userId) {
       deleteButton.style.display = 'none';
     }
 
+    // Configurar estado inicial del like
     if (this._isLiked) {
       likeButton.classList.add('grid__like_active');
     }
@@ -48,26 +54,35 @@ export default class Card {
   setLikeStatus(isLiked) {
     this._isLiked = isLiked;
     const likeButton = this._element.querySelector('.grid__like');
-    if (this._isLiked) {
-      likeButton.classList.add('grid__like_active');
-    } else {
-      likeButton.classList.remove('grid__like_active');
+    
+    if (likeButton) {
+      if (this._isLiked) {
+        likeButton.classList.add('grid__like_active');
+      } else {
+        likeButton.classList.remove('grid__like_active');
+      }
     }
   }
 
   _setEventListeners() {
     const deleteButton = this._element.querySelector('.grid__delete');
-    if (deleteButton) {
-      deleteButton.addEventListener('click', () => {
-        this._handleDeleteClick(this._id);
-      });
-    }
+    const cardImage = this._element.querySelector('.grid__pic');
+    const likeButton = this._element.querySelector('.grid__like');
 
-    this._element.querySelector('.grid__pic').addEventListener('click', () => {
+    // Event listener del botón de eliminar
+    deleteButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      console.log('Click en botón eliminar, ID:', this._id);
+      this._handleDeleteClick(this._id);
+    });
+
+    // Event listener de la imagen
+    cardImage.addEventListener('click', () => {
       this._handleCardClick({ src: this._link, alt: this._name });
     });
 
-    this._element.querySelector('.grid__like').addEventListener('click', () => {
+    // Event listener del like
+    likeButton.addEventListener('click', () => {
       this._handleLikeClick(this._id, this._isLiked);
     });
   }

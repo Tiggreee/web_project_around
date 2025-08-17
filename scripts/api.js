@@ -37,6 +37,17 @@ export default class Api {
     .then(this._checkResponse);
   }
 
+  updateAvatar(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar
+      })
+    })
+    .then(this._checkResponse);
+  }
+
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
@@ -45,22 +56,6 @@ export default class Api {
         name,
         link
       })
-    })
-    .then(this._checkResponse);
-  }
-
-  likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: 'PUT',
-      headers: this._headers
-    })
-    .then(this._checkResponse);
-  }
-
-  unlikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
     })
     .then(this._checkResponse);
   }

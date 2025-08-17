@@ -28,13 +28,17 @@ const userInfo = new UserInfo({
 const deleteCardPopup = new PopupWithConfirmation('#deleteCardModal', (cardId) => {
   return api.deleteCard(cardId)
     .then(() => {
+      // Buscar y eliminar la tarjeta del DOM
       const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
       if (cardElement) {
         cardElement.remove();
       }
       deleteCardPopup.close();
     })
-    .catch(err => console.error('Error al eliminar tarjeta:', err));
+    .catch(err => {
+      console.error('Error al eliminar tarjeta:', err);
+      alert('Error al eliminar la tarjeta. Por favor, inténtalo de nuevo.');
+    });
 });
 
 deleteCardPopup.setEventListeners();
@@ -57,12 +61,19 @@ function createCard(cardData) {
         deleteCardPopup.open(cardId);
       },
       handleLikeClick: (cardId, isLiked) => {
-        const apiMethod = isLiked ? api.unlikeCard(cardId) : api.likeCard(cardId);
-        apiMethod
-          .then((newCardData) => {
-            card.setLikeStatus(newCardData.isLiked);
-          })
-          .catch(err => console.error('Error al actualizar like:', err));
+        if (isLiked) {
+          api.unlikeCard(cardId)
+            .then(() => {
+              card.setLikeStatus(false);
+            })
+            .catch(err => console.error('Error:', err));
+        } else {
+          api.likeCard(cardId)
+            .then(() => {
+              card.setLikeStatus(true);
+            })
+            .catch(err => console.error('Error:', err));
+        }
       }
     }
   );
@@ -93,10 +104,32 @@ const addCardPopup = new PopupWithForm('#addCardModal', (formData) => {
       cardsList.addItem(cardElement);
       addCardPopup.close();
     })
-    .catch(err => console.error('Error al agregar tarjeta:', err));
+    .catch(err => {
+      console.error('Error al agregar tarjeta:', err);
+      alert('Error al agregar la tarjeta. Verifica que la URL de la imagen sea válida.');
+    });
 });
 
 addCardPopup.setEventListeners();
+
+// Popup para actualizar avatar
+const updateAvatarPopup = new PopupWithForm('#updateAvatarModal', (formData) => {
+  return api.updateAvatar(formData.avatar)
+    .then((userData) => {
+      userInfo.setUserInfo({
+        name: userData.name,
+        job: userData.about,
+        avatar: userData.avatar
+      });
+      updateAvatarPopup.close();
+    })
+    .catch(err => {
+      console.error('Error al actualizar avatar:', err);
+      alert('Error al actualizar avatar. Usa una URL completa (https://...)');
+    });
+});
+
+updateAvatarPopup.setEventListeners();
 
 // Event listener para el botón de editar perfil
 document.querySelector('.header__edit').addEventListener('click', () => {
@@ -113,6 +146,11 @@ document.querySelector('.header__add').addEventListener('click', () => {
   addCardPopup.open();
 });
 
+// Event listener para actualizar avatar
+document.querySelector('.header__pic').addEventListener('click', () => {
+  updateAvatarPopup.open();
+});
+
 // Carga inicial de datos
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
@@ -124,14 +162,20 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     });
 
     cardsList = new Section({
-      items: cards,
-      renderer: (item) => {
-        const cardElement = createCard(item);
+      items: cards.reverse(),
+      renderer: (cardData) => {
+        console.log('Datos de la tarjeta desde API:', cardData);
+        const cardElement = createCard(cardData);
         cardsList.addItem(cardElement);
       }
-    }, '.cards__list');
+    }, '#cardsContainer');
 
     cardsList.renderItems();
   })
-  .catch(err => console.error('Error al cargar datos iniciales:', err));
+  .catch(err => {
+    console.error('Error al cargar datos iniciales:', err);
+    // Mostrar algún mensaje de error al usuario
+    document.querySelector('#cardsContainer').innerHTML = 
+      '<p style="color: white; text-align: center;">Error al cargar las tarjetas. Por favor, recarga la página.</p>';
+  });
 

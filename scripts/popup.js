@@ -8,14 +8,17 @@ export default class Popup {
     // Close all open modals first
     document.querySelectorAll('.modal_opened').forEach(modal => {
       modal.classList.remove('modal_opened');
+      modal.style.display = 'none';
     });
     
     this._popup.classList.add('modal_opened');
+    this._popup.style.display = 'flex';
     document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
     this._popup.classList.remove('modal_opened');
+    this._popup.style.display = 'none';
     document.removeEventListener('keydown', this._handleEscClose);
   }
 
@@ -28,7 +31,9 @@ export default class Popup {
   setEventListeners() {
     this._popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('modal') || 
-          evt.target.classList.contains('modal__close')) {
+          evt.target.classList.contains('modal__overlay') ||
+          evt.target.classList.contains('modal__close') ||
+          evt.target.closest('.modal__close')) {
         this.close();
       }
     });

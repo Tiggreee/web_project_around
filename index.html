@@ -34,9 +34,8 @@
     </section>
 
     <main class="grid">
-      <section class="grid__section" id="cardsContainer">
-        <div class="cards__list"></div>
-      </section>
+      <ul class="cards__list" id="cardsContainer">
+      </ul>
     </main>
 
     <footer class="footer">
@@ -63,22 +62,27 @@
 
     <template id="card-template">
       <li class="grid__item">
-        <button type="button" class="grid__delete">
-          <img src="./images/trashbin.png" alt="eliminar" class="grid__delete-icon">
+        <button type="button" class="grid__delete" aria-label="Eliminar">
+          <img src="./images/trashbin.png" alt="Eliminar" class="grid__delete-icon">
         </button>
         <img class="grid__pic" src="#" alt="">
         <div class="grid__item-row">
           <h2 class="grid__title"></h2>
-          <button class="grid__like" type="button"></button>
+          <button class="grid__like" type="button" aria-label="Me gusta">
+            <div class="grid__like-heart"></div>
+          </button>
         </div>
       </li>
     </template>
 
     <div class="modal" id="addCardModal">
+      <div class="modal__overlay"></div>
       <div class="modal__content">
-        <button type="button" class="modal__close"></button>
-        <h3 class="modal__title">Nuevo lugar</h3>
-        <form class="popup__form" id="addCardForm" name="addCard">
+        <button type="button" class="modal__close" aria-label="Cerrar">
+          <img src="./images/close_button.png" alt="Cerrar"/>
+        </button>
+        <form class="popup__form" id="addCardForm" name="addCard" novalidate>
+          <h3 class="modal__title">Nuevo lugar</h3>
           <input 
             type="text" 
             name="title" 
@@ -99,7 +103,7 @@
             required
           >
           <span class="popup__error" id="link-input-error"></span>
-          <button type="submit" class="popup__button">Guardar</button>
+          <button type="submit" class="popup__button">Crear</button>
         </form>
       </div>
     </div>
@@ -115,10 +119,28 @@
     </div>   
 
     <div class="modal" id="deleteCardModal">
+      <div class="modal__overlay"></div>
       <div class="modal__content">
-        <button type="button" class="modal__close"></button>
+        <button type="button" class="modal__close" aria-label="Cerrar">
+          <img src="./images/close_button.png" alt="Cerrar"/>
+        </button>
         <h3 class="modal__title">¿Estás seguro?</h3>
-        <button type="submit" class="modal__save">Sí</button>
+        <button type="button" class="popup__button popup__button_type_delete">Sí</button>
+      </div>
+    </div>
+
+    <div class="modal" id="updateAvatarModal">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+        <button type="button" class="modal__close" aria-label="Cerrar">
+          <img src="./images/close_button.png" alt="Cerrar"/>
+        </button>
+        <form class="popup__form" id="updateAvatarForm" autocomplete="off" novalidate>
+          <h3 class="modal__title">Cambiar foto de perfil</h3>
+          <input class="popup__input" type="url" name="avatar" placeholder="Enlace de la imagen" required/>
+          <span class="popup__error" id="avatar-error"></span>
+          <button class="popup__button" type="submit">Guardar</button>
+        </form>
       </div>
     </div>
   </body>
