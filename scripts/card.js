@@ -35,7 +35,6 @@ export default class Card {
 
     // Arreglar la comparación: owner puede ser string o objeto
     const ownerId = typeof this._owner === 'string' ? this._owner : this._owner?._id;
-    console.log('Owner ID procesado:', ownerId, 'User ID:', this._userId);
     
     // Solo mostrar botón de eliminar si es del usuario actual
     if (ownerId !== this._userId) {
@@ -72,7 +71,6 @@ export default class Card {
     // Event listener del botón de eliminar
     deleteButton.addEventListener('click', (e) => {
       e.stopPropagation();
-      console.log('Click en botón eliminar, ID:', this._id);
       this._handleDeleteClick(this._id);
     });
 

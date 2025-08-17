@@ -82,10 +82,8 @@ function createCard(cardData) {
 
 // Popup para editar perfil
 const editProfilePopup = new PopupWithForm('#editProfileModal', (formData) => {
-  console.log('Datos del perfil:', formData); // Debug temporal
   return api.updateProfile(formData.name, formData.about)
     .then((userData) => {
-      console.log('Perfil actualizado:', userData); // Debug temporal
       userInfo.setUserInfo({
         name: userData.name,
         job: userData.about,
@@ -138,9 +136,7 @@ updateAvatarPopup.setEventListeners();
 
 // Event listener para el botón de editar perfil
 document.querySelector('.header__edit').addEventListener('click', () => {
-  console.log('Botón editar perfil clickeado'); // Debug temporal
   const currentUserInfo = userInfo.getUserInfo();
-  console.log('Info actual del usuario:', currentUserInfo); // Debug temporal
   editProfilePopup.setInputValues({
     name: currentUserInfo.name,
     about: currentUserInfo.job
@@ -171,7 +167,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     cardsList = new Section({
       items: cards.reverse(),
       renderer: (cardData) => {
-        console.log('Datos de la tarjeta desde API:', cardData);
         const cardElement = createCard(cardData);
         cardsList.addItem(cardElement);
       }
