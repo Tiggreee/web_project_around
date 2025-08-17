@@ -5,31 +5,32 @@ export default class Popup {
   }
 
   open() {
-    this._popup.style.display = 'flex';
-    document.body.classList.add('modal-open');
+    // Close all open modals first
+    document.querySelectorAll('.modal_opened').forEach(modal => {
+      modal.classList.remove('modal_opened');
+    });
+    
+    this._popup.classList.add('modal_opened');
     document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
-    this._popup.style.display = 'none';
-    document.body.classList.remove('modal-open');
+    this._popup.classList.remove('modal_opened');
     document.removeEventListener('keydown', this._handleEscClose);
   }
 
-  _handleEscClose(e) {
-    if (e.key === 'Escape' || e.key === 'Esc') {
+  _handleEscClose(evt) {
+    if (evt.key === 'Escape') {
       this.close();
     }
   }
 
   setEventListeners() {
-    const closeButton = this._popup.querySelector('.modal__close');
-    if (closeButton) {
-      closeButton.addEventListener('click', () => this.close());
-    }
-    const overlay = this._popup.querySelector('.modal__overlay');
-    if (overlay) {
-      overlay.addEventListener('click', () => this.close());
-    }
+    this._popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('modal') || 
+          evt.target.classList.contains('modal__close')) {
+        this.close();
+      }
+    });
   }
 }

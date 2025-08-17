@@ -112,14 +112,25 @@
 }
 
 .grid__delete {
-  position: absolute;
-  top: 12px;      
-  right: 12px;
-  background: none;
+  background-image: url(../images/trashbin.png);  /* Removido las comillas */
+  background-size: contain; /* Añadido para asegurar que la imagen se muestra correctamente */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
   border: none;
-  cursor: pointer;
+  width: 18px;
+  height: 19px;
+  position: absolute;
+  top: 18px;
+  right: 15px;
   padding: 0;
-  z-index: 2;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  z-index: 1; /* Añadido para asegurar que está por encima de la imagen */
+}
+
+.grid__delete:hover {
+  background-image: url(../images/trashbin-hover.png); /* Removido las comillas */
 }
 
 .grid__delete-icon {
