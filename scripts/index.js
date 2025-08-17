@@ -82,8 +82,10 @@ function createCard(cardData) {
 
 // Popup para editar perfil
 const editProfilePopup = new PopupWithForm('#editProfileModal', (formData) => {
+  console.log('Datos del perfil:', formData); // Debug temporal
   return api.updateProfile(formData.name, formData.about)
     .then((userData) => {
+      console.log('Perfil actualizado:', userData); // Debug temporal
       userInfo.setUserInfo({
         name: userData.name,
         job: userData.about,
@@ -91,7 +93,10 @@ const editProfilePopup = new PopupWithForm('#editProfileModal', (formData) => {
       });
       editProfilePopup.close();
     })
-    .catch(err => console.error('Error al actualizar perfil:', err));
+    .catch(err => {
+      console.error('Error al actualizar perfil:', err);
+      alert('Error al actualizar el perfil. Inténtalo de nuevo.');
+    });
 });
 
 editProfilePopup.setEventListeners();
@@ -133,7 +138,9 @@ updateAvatarPopup.setEventListeners();
 
 // Event listener para el botón de editar perfil
 document.querySelector('.header__edit').addEventListener('click', () => {
+  console.log('Botón editar perfil clickeado'); // Debug temporal
   const currentUserInfo = userInfo.getUserInfo();
+  console.log('Info actual del usuario:', currentUserInfo); // Debug temporal
   editProfilePopup.setInputValues({
     name: currentUserInfo.name,
     about: currentUserInfo.job

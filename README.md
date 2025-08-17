@@ -70,6 +70,22 @@ En la novena etapa del proyecto, me enfoqué en mejorar la validación de los fo
 En esta etapa, el proyecto fue reorganizado completamente en módulos basados en ES6 para mejorar la escalabilidad y el mantenimiento. Se implementaron las clases Card y FormValidator, cada una en su propio archivo. La lógica de control de modales y utilidades se trasladó a utils.js, mientras que index.js integra y coordina todos los módulos. La validación de formularios ahora es universal y reutilizable, y la generación de tarjetas es flexible y orientada a objetos. El código es más limpio, estructurado y fácil de extender, cumpliendo con lo que considero, las mejores prácticas de JS moderno.
 
 
+## Actualización fase 12 - Integración completa con API y funcionalidades avanzadas
+
+Esta fase marcó un antes y un después en el proyecto. Implementé la integración completa con la API de TripleTen, transformando la aplicación en una experiencia totalmente funcional y dinámica. Ahora las tarjetas se cargan directamente desde el servidor, se pueden agregar nuevas que se guardan en la base de datos, y cada usuario solo puede eliminar sus propias creaciones.
+
+Lo que se puede hacer ahora:
+- **Gestión completa de tarjetas**: Agregar, eliminar y dar/quitar likes con persistencia real en servidor
+- **Edición de perfil**: Cambiar nombre y descripción que se mantienen entre sesiones
+- **Actualización de avatar**: Cambiar la foto de perfil usando URLs de imágenes
+- **Autorización inteligente**: Solo puedes eliminar tus propias tarjetas, las de otros usuarios no muestran el botón
+- **Estados de carga**: Todos los formularios muestran "Guardando..." durante las operaciones
+
+La arquitectura se mantuvo modular pero se reforzó con clases especializadas como PopupWithConfirmation para eliminaciones seguras y una API robusta que maneja todos los endpoints necesarios. Los hover effects en el avatar y la confirmación antes de eliminar mejoran significativamente la experiencia de usuario.
+
+Esta implementación representa el salto de un prototipo estático a una aplicación web real y funcional, cumpliendo con todos los estándares de desarrollo moderno que TripleTen requiere para proyectos profesionales.
+
+
 ## Actualización fase 11 - Resolución de conflictos y mejoras en la estructura modular
 
 En esta undécima etapa, el enfoque principal fue la consolidación de la estructura modular del proyecto. Se revisaron y limpiaron los archivos, asegurando que la lógica de las clases y módulos estuviera unificada. Además, se mejoró la organización del código, reforzando la separación de responsabilidades entre los componentes, especialmente en la gestión de popups y formularios. Esta fase permitió optimizar la mantenibilidad y claridad del proyecto, facilitando futuras colaboraciones y ampliaciones.
